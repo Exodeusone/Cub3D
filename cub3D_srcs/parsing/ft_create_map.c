@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:43:55 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 14:44:09 by jbonniva         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:03:42 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D_include/cub3D.h"
+#include "../../cub3D_include/cub3D.h"
 
 void	ft_new_map(t_map *map)
 {

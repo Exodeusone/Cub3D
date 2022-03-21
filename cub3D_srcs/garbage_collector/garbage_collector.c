@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:29:15 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/21 13:45:56 by jbonniva         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:03:30 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D_include/cub3D.h"
+#include "../../cub3D_include/cub3D.h"
 
 int	init_garbage(t_data *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 16:17:38 by jbonniva         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:45:00 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,16 @@ struct	s_map{
 };
 
 struct s_data{
+	int			map_height;
+	int			map_width;
+	int			map_check;
+	int			before_map;
 	t_garbage	*garbage;
 	t_map		*map;
 };
 
 /* MAIN */
-int	main(int argc, char **argv);
+int		main(int argc, char **argv);
 
 /* GNL */
 char	*get_next_line(int fd);
@@ -86,8 +90,25 @@ int		ft_check_extention_name(char *str);
 
 /* PARSING MAP */
 int		ft_parsing_map(t_data *data, char *str);
+int		ft_parse_fd(t_data *data, int fd, char *str);
 void	ft_create_map(t_data *data);
 void	ft_add_map(t_data *data, char *str);
 void	ft_new_map(t_map *map);
+int		ft_check_all_identifier(t_data *data);
+int		ft_check_identifier_2(t_data *data, char *str);
+int		ft_check_identifier_1(t_data *data, char *str);
+char 	*ft_get_my_path_2(char *str);
+char 	*ft_get_my_path(char *str);
+int		ft_read_fd(t_data *data, int fd);
+int		ft_check_read(t_data *data, char *str, int j);
+int		ft_get_my_size_map(t_data *data, char *str, int i);
+void	ft_malloc_map(t_data *data);
+int		ft_first_check(t_data *data);
+int		ft_find_identifier(t_data *data, char *str);
+int		ft_check_rgb(char *str);
+int		ft_check_line(char *str);
+void	ft_put_in_area(t_data *data, char *str, int i);
+void	ft_create_area(t_data *data, int fd);
+int		ft_fill_map(t_data *data, char *str);
 
 #endif

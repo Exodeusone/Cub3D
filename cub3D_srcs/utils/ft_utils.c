@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:54:04 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 16:17:24 by jbonniva         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:03:57 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D_include/cub3D.h"
+#include "../../cub3D_include/cub3D.h"
 
 int	ft_strncmp(char *s1, char *s2, int n)
 {

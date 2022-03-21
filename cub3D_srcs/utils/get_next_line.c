@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 20:25:11 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 09:21:24 by jbonniva         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:04:05 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D_include/cub3D.h"
+#include "../../cub3D_include/cub3D.h"
 
 char	*ft_statical_to_statical(char *statical)
 {

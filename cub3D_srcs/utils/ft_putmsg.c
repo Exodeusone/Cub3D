@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_putmsg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 11:20:43 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 13:47:40 by jbonniva         ###   ########.fr       */
+/*   Created: 2022/03/21 10:10:46 by jbonniva          #+#    #+#             */
+/*   Updated: 2022/03/21 22:03:53 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D_include/cub3D.h"
+#include "../../cub3D_include/cub3D.h"
 
-void	*ft_malloc(t_data *data, size_t size)
+void	ft_puterr(char *s)
 {
-	void	*elem;
+	int	i;
 
-	elem = malloc(size);
-	if (!elem)
+	i = 0;
+	while (s[i])
 	{
-		clear_garbage(data);
-		exit(0);
+		write(2, &s[i], 1);
+		i++;
 	}
-	if (!add_garbage(data, elem))
+}
+
+void	ft_putmsg(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		clear_garbage(data);
-		exit(0);
+		write(1, &s[i], 1);
+		i++;
 	}
-	return (elem);
 }

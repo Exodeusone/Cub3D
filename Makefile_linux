@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+         #
+#    By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/03/21 22:41:36 by exodeus          ###   ########.fr        #
+#    Updated: 2022/03/21 14:45:04 by jbonniva         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,43 +49,27 @@ CFLAG	= -Wall -Werror -Wextra
 
 #SRCS :
 SRCS_NAME	= main.c\
+			  ft_check_name_map.c\
+			  ft_utils.c\
+			  get_next_line_utils.c\
+			  get_next_line.c\
+			  ft_putmsg.c\
+			  ft_parsing_map.c\
+			  ft_clean_garbage.c\
+			  ft_malloc.c\
+			  garbage_collector.c\
+			  ft_create_map.c\
 
 SRCS_PATH	= cub3D_srcs
 
-# GARBAGE_COLLECTOR
-GARB_NAME	= ft_clean_garbage.c\
-			  ft_malloc.c\
-			  garbage_collector.c\
-
-GARB_PATH	= cub3D_srcs/garbage_collector
-
-# UTILS
-UTILS_NAME	= ft_utils.c\
-			  ft_putmsg.c\
-			  get_next_line.c\
-			  get_next_line_utils.c\
-
-UTILS_PATH	= cub3D_srcs/utils
-
-#PARSING
-PARS_NAME	= ft_check_name_map.c\
-			  ft_parsing_map.c\
-			  ft_create_map.c\
-			  ft_check_map.c\
-			  ft_fill_map.c\
-			  ft_check_identifier.c\
-			  ft_find_identifier.c\
-
-PARS_PATH	= cub3D_srcs/parsing
 
 #INCLUDE :
+
 INC_PATH	= cub3D_include
 
 #FOR_COMPIL :
-SRCS 	= 	${addprefix ${SRCS_PATH}/,${SRCS_NAME}}\
-			${addprefix ${GARB_PATH}/,${GARB_NAME}}\
-			${addprefix ${UTILS_PATH}/,${UTILS_NAME}}\
-			${addprefix ${PARS_PATH}/,${PARS_NAME}}\
+
+SRCS 	= 	${addprefix ${SRCS_PATH}/,${SRCS_NAME}}
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -93,7 +77,7 @@ OBJS	=	${SRCS:.c=.o}
 all:	${NAME}
 
 ${NAME}:	${OBJS} ${INC_PATH}/cub3D.h
-			$(CC) ${CFLAG} ${OBJS} -Lmlx -lmlx -L/usr/lib -I mlx -lm -lz -o ${NAME}
+			$(CC) ${CFLAG} ${OBJS} -Lmlx -lmlx -L/usr/lib -I mlx -lXext -lX11 -lm -lz -o ${NAME}
 
 
 %.o : %.c

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean_garbage.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbonniva <jbonniva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 21:41:52 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 13:48:27 by jbonniva         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:03:20 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D_include/cub3D.h"
+#include "../../cub3D_include/cub3D.h"
 
 void	ft_free_garb(t_garbage *garb)
 {
