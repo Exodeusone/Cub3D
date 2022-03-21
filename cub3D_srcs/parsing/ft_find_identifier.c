@@ -6,7 +6,7 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:39:56 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:40:06 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:11:09 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_check_rgb(char *str)
 	return (0);
 }
 
-int	ft_find_identifier(t_data *data, char *str)
+int	ft_find_identifier_1(t_data *data, char *str)
 {
 	if (ft_strncmp(str, "SO", 2) == 0)
 	{
@@ -48,6 +48,11 @@ int	ft_find_identifier(t_data *data, char *str)
 		if (ft_check_identifier_1(data, str) == 1)
 			return (1);
 	}
+	return (0);
+}
+
+int	ft_find_identifier_2(t_data *data, char *str)
+{
 	if (ft_strncmp(str, "F", 1) == 0)
 	{
 		if (ft_check_identifier_2(data, str) == 1)
@@ -58,5 +63,14 @@ int	ft_find_identifier(t_data *data, char *str)
 		if (ft_check_identifier_2(data, str) == 1)
 			return (1);
 	}
+	return (0);
+}
+
+int	ft_find_identifier(t_data *data, char *str)
+{
+	if (ft_find_identifier_1(data, str) == 1)
+		return (1);
+	if (ft_find_identifier_2(data, str) == 1)
+		return (1);
 	return (0);
 }

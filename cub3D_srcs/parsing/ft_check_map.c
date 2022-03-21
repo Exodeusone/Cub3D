@@ -6,7 +6,7 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:35 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:40:38 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:13:34 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_first_check(t_data *data)
 void	ft_malloc_map(t_data *data)
 {
 	t_map	*tmp;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	tmp = data->map;
@@ -76,7 +76,7 @@ int	ft_check_read(t_data *data, char *str, int j)
 	i = 0;
 	if (ft_check_all_identifier(data) == 0)
 	{
-		while(str[i] && (str[i] == ' ' || str[i] == '\t'))
+		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 			i++;
 		if (!str[i] || str[i] == '\n')
 			return (0);

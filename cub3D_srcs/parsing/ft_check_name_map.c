@@ -6,7 +6,7 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:26:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 22:03:36 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:10:13 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	ft_check_beggin_name(char *str)
 {
 	if (str[0] == '.')
 	{
-		if (ft_strncmp(str, "./cub3D_maps/", (ft_strlen("./cub3D_map/") + 1)) != 0)
+		if (ft_strncmp(str, "./cub3D_maps/", (ft_strlen("./cub3D_map/") + 1))
+			!= 0)
 			return (1);
 	}
 	if (str[0] == 'c')

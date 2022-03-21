@@ -6,13 +6,13 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 21:41:52 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:03:20 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:05:52 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-void	ft_free_garb(t_garbage *garb)
+void	ft_free_garb(t_garb *garb)
 {
 	free(garb->point);
 	garb->point = NULL;
@@ -22,8 +22,8 @@ void	ft_free_garb(t_garbage *garb)
 
 void	clear_garbage(t_data *data)
 {
-	t_garbage	*garb;
-	t_garbage	*tmp;
+	t_garb	*garb;
+	t_garb	*tmp;
 
 	garb = data->garbage;
 	while (garb != NULL)
@@ -36,8 +36,8 @@ void	clear_garbage(t_data *data)
 
 void	ft_free(t_data *data, void *pointer)
 {
-	t_garbage	*garb;
-	t_garbage	*tmp;
+	t_garb	*garb;
+	t_garb	*tmp;
 
 	garb = data->garbage;
 	if (garb->point == pointer)

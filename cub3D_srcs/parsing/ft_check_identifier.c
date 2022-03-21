@@ -6,13 +6,13 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:35:26 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:37:25 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:12:58 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-char *ft_get_my_path(char *str)
+char	*ft_get_my_path(char *str)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ char *ft_get_my_path(char *str)
 	return (&str[i]);
 }
 
-char *ft_get_my_path_2(char *str)
+char	*ft_get_my_path_2(char *str)
 {
 	int	i;
 
@@ -59,7 +59,8 @@ int	ft_check_identifier_1(t_data *data, char *str)
 			{
 				tmp->path = ft_strdup(data, ft_get_my_path(str));
 				if (tmp->path == NULL)
-					return (ft_puterr("You need to put some path in all orientation"), 1);
+					return (ft_puterr
+						("You need to put some path in all orientation"), 1);
 			}
 			else
 				return (ft_puterr("Too many same orientation\n"), 1);

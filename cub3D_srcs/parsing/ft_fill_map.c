@@ -6,7 +6,7 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:29:34 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:31:26 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:11:35 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_check_line(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
-		if (str[i] == '1' || str[i] == '0' || str[i] == ' ' || str[i] == 'N' || str[i] == 'E')
+		if (str[i] == '1' || str[i] == '0' || str[i] == ' '
+			|| str[i] == 'N' || str[i] == 'E')
 			i++;
 		else
 			return (2);
@@ -37,7 +38,7 @@ int	ft_check_line(char *str)
 void	ft_put_in_area(t_data *data, char *str, int i)
 {
 	t_map	*tmp;
-	int	j;
+	int		j;
 
 	j = 0;
 	tmp = data->map;

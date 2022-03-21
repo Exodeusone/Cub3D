@@ -6,7 +6,7 @@
 /*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 13:29:15 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/21 22:03:30 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/21 23:07:36 by exodeus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	init_garbage(t_data *data)
 {
-	data->garbage = malloc(sizeof(t_garbage));
+	data->garbage = malloc(sizeof(t_garb));
 	if (!data->garbage)
 		return (0);
 	data->garbage->point = NULL;
@@ -22,7 +22,7 @@ int	init_garbage(t_data *data)
 	return (1);
 }
 
-t_garbage	*last_garbage(t_garbage *garbage)
+t_garb	*last_garbage(t_garb *garbage)
 {
 	while (garbage)
 	{
@@ -32,15 +32,16 @@ t_garbage	*last_garbage(t_garbage *garbage)
 	}
 	return (garbage);
 }
+
 int	add_garbage(t_data *data, void *new)
 {
-	t_garbage	*last;
-	t_garbage	*new_garbage;
+	t_garb	*last;
+	t_garb	*new_garbage;
 
 	last = NULL;
 	if (data->garbage->point)
 	{
-		new_garbage = malloc(sizeof(t_garbage));
+		new_garbage = malloc(sizeof(t_garb));
 		if (!new_garbage)
 			return (0);
 		new_garbage->point = new;
