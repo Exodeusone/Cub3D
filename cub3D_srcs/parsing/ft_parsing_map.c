@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:25 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/22 15:30:13 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 16:03:55 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ int	ft_parsing_map(t_data *data, char *str)
 	int	ret;
 
 	ret = 0;
+	fd = open(str, O_DIRECTORY);
+	if (fd != -1)
+		return (ft_puterr("Error\n"),
+			ft_puterr(str), ft_puterr(" is a directory\n"), 1);
 	fd = open(str, O_RDONLY);
 	if (fd < 3)
 		return (ft_puterr("Error\n"),
