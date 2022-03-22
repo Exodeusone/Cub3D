@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/22 14:22:59 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:29:37 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		return (ft_puterr("You need to send an argument to cub3D\n"), 1);
+		return (ft_puterr("Error\n"),
+			ft_puterr("You need to send an argument to cub3D\n"), 1);
 	ft_init_data(&data);
 	if (ft_check_name_map(argv[1]) == 1)
 		return (1);

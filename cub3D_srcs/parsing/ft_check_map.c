@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 11:41:01 by julien            #+#    #+#             */
-/*   Updated: 2022/03/22 14:31:32 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:19:14 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,8 @@ int	ft_check_map(t_data *data)
 	while (tmp->next)
 		tmp = tmp->next;
 	if (ft_check_floor(data, tmp) == 1)
-	{
-		printf("MAP PAS OK\n");
-		return (1);
-	}
+		return (ft_puterr("Error\nMap is not closed\n"), 1);
 	if (ft_check_start(data, tmp) == 1)
-	{
-		printf("START PAS OK");
-		return (1);
-	}
-	printf("MAP OK\n");
+		return (ft_puterr("Error\nToo many start position\n"), 1);
 	return (0);
 }

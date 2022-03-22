@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:29:34 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 14:01:39 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:30:00 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ int	ft_fill_map(t_data *data, char *str)
 
 	fd = open(str, O_RDONLY);
 	if (fd < 3)
-		return (ft_puterr(str), ft_puterr(" can't be open\n"), 1);
+		return (ft_puterr("Error\n"), ft_puterr(str),
+			ft_puterr(" can't be open\n"), 1);
 	ft_create_area(data, fd);
 	if (close(fd) < 0)
-		return (ft_puterr(str), ft_puterr(" can't be close\n"), 1);
+		return (ft_puterr("Error\n"),
+			ft_puterr(str), ft_puterr(" can't be close\n"), 1);
 	return (0);
 }

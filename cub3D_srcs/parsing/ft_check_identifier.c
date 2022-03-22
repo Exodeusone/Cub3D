@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:35:26 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 14:39:48 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:29:10 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ char	*ft_get_my_path_2(t_data *data, char *str)
 
 	i = 1;
 	while (str[i] && str[i] == ' ')
-	{
 		i++;
-	}
 	if (str[i] == '\n')
 		return (NULL);
-	i++;
 	if (ft_check_rgb(data, &str[i]) == 1)
 		return (NULL);
 	return (&str[i]);
@@ -59,11 +56,12 @@ int	ft_check_identifier_1(t_data *data, char *str)
 			{
 				tmp->path = ft_strdup(data, ft_get_my_path(str));
 				if (tmp->path == NULL)
-					return (ft_puterr
-						("You need to put some path in all orientation"), 1);
+					return (ft_puterr("Error\n"), ft_puterr
+						("You need to put some path in all orientation\n"), 1);
 			}
 			else
-				return (ft_puterr("Too many same orientation\n"), 1);
+				return (ft_puterr("Error\n"),
+					ft_puterr("Too many same orientation\n"), 1);
 			break ;
 		}
 		tmp = tmp->next;
@@ -84,10 +82,12 @@ int	ft_check_identifier_2(t_data *data, char *str)
 			{
 				tmp->path = ft_strdup(data, ft_get_my_path_2(data, str));
 				if (tmp->path == NULL)
-					return (ft_puterr("You need to put some valid rgb\n"), 1);
+					return (ft_puterr("Error\n"),
+						ft_puterr("You need to put some valid rgb\n"), 1);
 			}
 			else
-				return (ft_puterr("Too many same orientation\n"), 1);
+				return (ft_puterr("Error\n"),
+					ft_puterr("Too many same orientation\n"), 1);
 			break ;
 		}
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:35 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 13:44:55 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 15:28:05 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_first_check(t_data *data)
 {
 	if (data->map_height < 3)
-		return (ft_puterr("invalid map\n"), 1);
+		return (ft_puterr("Error\n"), ft_puterr("Invalid map\n"), 1);
 	return (0);
 }
 
@@ -84,7 +84,7 @@ int	ft_check_read(t_data *data, char *str, int j)
 	{
 		if (ft_get_my_size_map(data, str, j) == 1)
 		{
-			printf("invalide map\n");
+			ft_puterr("Error\nInvalid map\n");
 			return (1);
 		}
 	}

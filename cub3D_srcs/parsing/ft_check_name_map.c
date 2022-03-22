@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_name_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:26:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 23:10:13 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/22 15:28:43 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ int	ft_check_beggin_name(char *str)
 int	ft_check_name_map(char *str)
 {
 	if (ft_strlen(str) == 0)
-		return (ft_puterr("You need to use map in arguments\n"), 1);
+		return (ft_puterr("Error\n"),
+			ft_puterr("You need to use map in arguments\n"), 1);
 	if (ft_check_extention_name(str) == 1)
-		return (ft_puterr("Map extension need to be .cub\n"), 1);
+		return (ft_puterr("Error\n"),
+			ft_puterr("Map extension need to be .cub\n"), 1);
 	if (ft_check_beggin_name(str) == 1)
-		return (ft_puterr("Map need to be in cub3D_maps\n"), 1);
+		return (ft_puterr("Error\n"),
+			ft_puterr("Map need to be in cub3D_maps\n"), 1);
 	return (0);
 }

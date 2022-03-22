@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+         #
+#    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/03/21 22:41:36 by exodeus          ###   ########.fr        #
+#    Updated: 2022/03/22 14:57:16 by julien           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ _IBLANC		=	\033[47m
 #General variable :
 NAME	= cub3D
 
-CC		= gcc
+CC		= clang
 
-CFLAG	= -Wall -Werror -Wextra
+CFLAG	= -Wall -Werror -Wextra -g3
 
 #SRCS :
 SRCS_NAME	= main.c\
@@ -61,6 +61,8 @@ GARB_PATH	= cub3D_srcs/garbage_collector
 
 # UTILS
 UTILS_NAME	= ft_utils.c\
+			  ft_utils2.c\
+			  ft_split.c\
 			  ft_putmsg.c\
 			  get_next_line.c\
 			  get_next_line_utils.c\
@@ -75,6 +77,9 @@ PARS_NAME	= ft_check_name_map.c\
 			  ft_fill_map.c\
 			  ft_check_identifier.c\
 			  ft_find_identifier.c\
+			  ft_read_fd.c\
+			  ft_check_start.c\
+			  ft_replace_space.c\
 
 PARS_PATH	= cub3D_srcs/parsing
 
