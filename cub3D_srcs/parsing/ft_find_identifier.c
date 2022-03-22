@@ -3,16 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_identifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:39:56 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 23:11:09 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/22 14:50:42 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-int	ft_check_rgb(char *str)
+int	ft_ultimate_check_rgb(t_data *data, char *str)
+{
+	char	**check;
+	int		i;
+	int		ret;
+
+	i = 0;
+	check = ft_split(data, str, ',');
+	if (ft_strslen(check) != 3)
+		return (1);
+	while (check[i])
+	{
+		if (ft_strlen(check[i]) > 3)
+			return (1);
+		ret = ft_atoi(check[i]);
+		if (ret < 0 || ret > 255)
+			return (1);
+		i++;
+	}
+	ft_free_strs(data, check);
+	return (0);
+}
+
+int	ft_check_rgb(t_data *data, char *str)
 {
 	int	i;
 
@@ -23,6 +46,8 @@ int	ft_check_rgb(char *str)
 			return (1);
 		i++;
 	}
+	if (ft_ultimate_check_rgb(data, str) == 1)
+		return (1);
 	return (0);
 }
 

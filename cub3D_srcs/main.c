@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 23:15:53 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/22 14:22:59 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_init_data(t_data *data)
 	data->map_width = 0;
 	data->map_check = 0;
 	data->before_map = 0;
+	data->player.coor.x = 0;
+	data->player.coor.y = 0;
 }
 
 int	main(int argc, char **argv)
@@ -35,5 +37,6 @@ int	main(int argc, char **argv)
 		clear_garbage(&data);
 		return (1);
 	}
+	clear_garbage(&data);
 	return (0);
 }

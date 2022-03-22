@@ -3,99 +3,125 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 20:25:11 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:04:05 by exodeus          ###   ########.fr       */
+/*   Created: 2021/12/08 11:48:15 by upean-de          #+#    #+#             */
+/*   Updated: 2022/03/22 13:40:41 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-char	*ft_statical_to_statical(char *statical)
+static char	*put_cpy_line(char *substr, char *line)
 {
-	char	*new_statical;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	while (statical[i] != '\n' && statical[i] != '\0')
-		i++;
-	if (statical[i] == '\0')
+	while (substr[i] != '\n' && substr[i] != '\0')
 	{
-		free(statical);
-		return (NULL);
-	}
-	new_statical = malloc(sizeof(char) * (ft_len(statical) - i + 1));
-	i++;
-	while (statical[i] != '\0')
-	{
-		new_statical[j] = statical[i];
+		line[i] = substr[i];
 		i++;
-		j++;
 	}
-	new_statical[j] = '\0';
-	free(statical);
-	return (new_statical);
+	if (substr[i] == '\n')
+	{
+		line[i] = '\n';
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
 }
 
-char	*ft_statical_to_line(char *statical)
+static char	*cpy_line(t_data *data, char *substr)
 {
 	char	*line;
 	int		i;
 
 	line = NULL;
 	i = 0;
-	if (statical[i] == '\0')
+	if (substr[i] == '\0')
 		return (NULL);
-	while (statical[i] != '\0' && statical[i] != '\n')
+	while (substr[i] != '\n' && substr[i] != '\0')
 		i++;
-	if (statical[i] == '\0')
-		line = malloc(sizeof(char) * (i + 1));
-	else if (statical[i] == '\n')
-		line = malloc(sizeof(char) * (i + 2));
+	if (substr[i] == '\n')
+		line = ft_malloc(data, sizeof(char) * (i + 2));
+	else if (substr[i] == '\0')
+		line = ft_malloc(data, sizeof(char) * (i + 1));
 	if (!line)
-	{
-		free(statical);
 		return (NULL);
-	}
-	return (ft_statical_cpy(line, statical));
+	return (put_cpy_line(substr, line));
 }
 
-char	*ft_read_buf(int fd, char *statical)
+static char	*trim_substr(t_data *data, char *substr)
 {
-	char	*buf;
-	int		ret;
+	char	*dest;
+	int		i;
+	int		j;
 
-	ret = 1;
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
-	while (!ft_statical_chr(statical, '\n') && ret > 0)
+	dest = NULL;
+	i = 0;
+	j = 0;
+	while (substr[i] != '\n' && substr[i] != '\0')
+		i++;
+	if (substr[i] == '\0')
 	{
-		ret = read(fd, buf, BUFFER_SIZE);
-		if (ret < 0)
+		ft_free(data, substr);
+		return (NULL);
+	}
+	dest = ft_malloc(data, sizeof(char) * (ft_strlen(substr) - i + 1));
+	i++;
+	while (substr[i] != '\0')
+	{
+		dest[j] = substr[i];
+		i++;
+		j++;
+	}
+	dest[j] = '\0';
+	ft_free (data, substr);
+	return (dest);
+}
+
+static char	*ft_read(t_data *data, char *substr, int fd)
+{
+	char	*buff;
+	int		cursor;
+
+	cursor = 1;
+	buff = ft_malloc(data, sizeof(char) * (BUFFER_SIZE + 1));
+	while (!(ft_strchr(substr, '\n') && cursor != 0))
+	{
+		if (!buff)
+		{
+			ft_free(data, substr);
+			return (NULL);
+		}
+		cursor = read(fd, buff, BUFFER_SIZE);
+		if (cursor <= 0)
 			break ;
-		buf[ret] = '\0';
-		statical = ft_statical_buf_join(statical, buf);
+		buff[cursor] = '\0';
+		substr = ft_strjoin(data, substr, buff);
 	}
-	free(buf);
-	return (statical);
+	ft_free(data, buff);
+	return (substr);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(t_data *data, int fd)
 {
-	char		*line;
-	static char	*statical;
+	char			*line;
+	static char		*substr;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (!substr)
+	{
+		substr = ft_malloc(data, sizeof(char) * 1);
+		if (!substr)
+			return (NULL);
+		else
+			substr[0] = '\0';
+	}
+	substr = ft_read(data, substr, fd);
+	if (substr == NULL)
 		return (NULL);
-	statical = ft_read_buf(fd, statical);
-	if (!statical)
-		return (NULL);
-	line = ft_statical_to_line(statical);
-	statical = ft_statical_to_statical(statical);
+	line = cpy_line(data, substr);
+	substr = trim_substr(data, substr);
 	return (line);
 }

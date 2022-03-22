@@ -3,98 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 22:56:41 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 22:04:01 by exodeus          ###   ########.fr       */
+/*   Created: 2021/12/08 11:49:12 by upean-de          #+#    #+#             */
+/*   Updated: 2022/03/22 13:38:49 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-int	ft_len(char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
-char	*ft_statical_cpy(char *line, char *statical)
+int	ft_strchr(char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	while (statical[i] != '\0' && statical[i] != '\n')
+	if (s)
 	{
-		line[i] = statical[i];
-		i++;
+		while (s[i] != '\0')
+		{
+			if (c == s[i])
+				return (1);
+			i++;
+		}
 	}
-	if (statical[i] == '\n')
-	{
-		line[i] = '\n';
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-char	*ft_cpy_in_join(char *statical, char *buf, char *new_statical)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (statical[j] != '\0')
-	{
-		new_statical[j] = statical[j];
-		j++;
-	}
-	while (buf[i] != '\0')
-	{
-		new_statical[j] = buf[i];
-		i++;
-		j++;
-	}
-	new_statical[j] = '\0';
-	free(statical);
-	return (new_statical);
-}
-
-char	*ft_statical_buf_join(char *statical, char *buf)
-{
-	char	*new_statical;
-
-	if (!statical)
-	{
-		statical = malloc(sizeof(char) * 1);
-		statical[0] = '\0';
-	}
-	if (!statical || !buf)
-		return (NULL);
-	new_statical = malloc(sizeof(char) * (ft_len(statical) + ft_len(buf) + 1));
-	if (!new_statical)
-		return (NULL);
-	return (ft_cpy_in_join(statical, buf, new_statical));
-}
-
-int	ft_statical_chr(char *s, int c)
-{
-	int		i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return (1);
-		i++;
-	}
-	if (s[i] == (char)c)
-		return (1);
 	return (0);
 }

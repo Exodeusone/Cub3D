@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:25 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/21 23:10:52 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/22 14:30:55 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ void	print_map(t_map *map)
 
 int	ft_parse_fd(t_data *data, int fd, char *str)
 {
-	(void)str;
 	ft_create_map(data);
 	if (ft_read_fd(data, fd) == 1)
 		return (1);
 	if (ft_fill_map(data, str) == 1)
 		return (1);
+	if (ft_check_map(data) == 1)
+		return (1);
 	print_map(data->map);
-	// if (ft_check_map(data) == 1)
-	// 	return (1);
 	return (0);
 }
 

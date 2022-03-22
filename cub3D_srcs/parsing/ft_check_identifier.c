@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_identifier.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:35:26 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 23:12:58 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/22 14:39:48 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_get_my_path(char *str)
 	return (&str[i]);
 }
 
-char	*ft_get_my_path_2(char *str)
+char	*ft_get_my_path_2(t_data *data, char *str)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ char	*ft_get_my_path_2(char *str)
 	if (str[i] == '\n')
 		return (NULL);
 	i++;
-	if (ft_check_rgb(&str[i]) == 1)
+	if (ft_check_rgb(data, &str[i]) == 1)
 		return (NULL);
 	return (&str[i]);
 }
@@ -82,7 +82,7 @@ int	ft_check_identifier_2(t_data *data, char *str)
 		{
 			if (tmp->path == NULL)
 			{
-				tmp->path = ft_strdup(data, ft_get_my_path_2(str));
+				tmp->path = ft_strdup(data, ft_get_my_path_2(data, str));
 				if (tmp->path == NULL)
 					return (ft_puterr("You need to put some valid rgb\n"), 1);
 			}

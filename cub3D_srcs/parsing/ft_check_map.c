@@ -3,118 +3,114 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 22:25:35 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 23:13:34 by exodeus          ###   ########.fr       */
+/*   Created: 2022/03/22 11:41:01 by julien            #+#    #+#             */
+/*   Updated: 2022/03/22 14:31:32 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-int	ft_first_check(t_data *data)
+int	ft_check_char(t_data *data, char c)
 {
-	t_map	*tmp;
-
-	tmp = data->map;
-	if (data->map_height < 3)
-		return (ft_puterr("invalid map\n"), 1);
-	return (0);
-}
-
-void	ft_malloc_map(t_data *data)
-{
-	t_map	*tmp;
 	int		i;
-	int		j;
+	char	*check;
 
 	i = 0;
-	tmp = data->map;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->map = ft_malloc(data, sizeof(char *) * data->map_height + 1);
-	tmp->map[data->map_height] = NULL;
-	while (i < data->map_height)
+	check = ft_strdup(data, "01NSEW");
+	while (check[i])
 	{
-		tmp->map[i] = ft_malloc(data, sizeof(char) * data->map_width);
-		j = 0;
-		while (j < data->map_width -1)
+		if (check[i] == c)
 		{
-			tmp->map[i][j] = ' ';
-			j++;
+			ft_free(data, check);
+			return (0);
 		}
-		tmp->map[i][j] = '\0';
 		i++;
 	}
+	return (1);
 }
 
-int	ft_get_my_size_map(t_data *data, char *str, int i)
+int	ft_check_around(t_data *data, char c)
 {
-	if (ft_check_line(str) == 2)
-		return (1);
-	if (ft_check_line(str) == 1 && data->map_height > 0)
-	{
-		data->map_check = 1;
-		return (0);
-	}
-	else if (ft_check_line(str) == 1 && data->map_height == 0)
-		return (0);
-	if (ft_check_line(str) == 0 && data->map_check == 1)
-		return (1);
-	if (data->before_map == 0)
-		data->before_map = i;
-	data->map_height++;
-	if (data->map_width < ft_strlen(str))
-		data->map_width = ft_strlen(str);
-	return (0);
-}
-
-int	ft_check_read(t_data *data, char *str, int j)
-{
-	int	i;
+	int		i;
+	char	*check;
 
 	i = 0;
-	if (ft_check_all_identifier(data) == 0)
+	check = ft_strdup(data, "1 ");
+	while (check[i])
 	{
-		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-			i++;
-		if (!str[i] || str[i] == '\n')
+		if (check[i] == c)
+		{
+			ft_free(data, check);
 			return (0);
-		if (ft_find_identifier(data, &str[i]) == 1)
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	ft_parse_around(t_data *data, char **map, int i, int j)
+{
+	if (i != 0 && j != 0 && i != data->map_height && j != data->map_width)
+	{
+		if (ft_check_char(data, map[i][j + 1]) == 1)
+			return (1);
+		if (ft_check_char(data, map[i][j - 1]) == 1)
+			return (1);
+		if (ft_check_char(data, map[i - 1][j]) == 1)
+			return (1);
+		if (ft_check_char(data, map[i + 1][j]) == 1)
 			return (1);
 	}
 	else
 	{
-		if (ft_get_my_size_map(data, str, j) == 1)
-		{
-			printf("invalide map\n");
+		if (ft_check_around(data, map[i][j]) == 1)
 			return (1);
-		}
 	}
 	return (0);
 }
 
-int	ft_read_fd(t_data *data, int fd)
+int	ft_check_floor(t_data *data, t_map *map)
 {
-	char	*str;
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (1)
+	while (i < data->map_height)
 	{
-		str = get_next_line(fd);
-		if (!str)
-			break ;
-		if (ft_check_read(data, str, i) == 1)
+		j = 0;
+		while (j < data->map_width)
 		{
-			free(str);
-			return (1);
+			if (map->map[i][j] == '0')
+			{
+				if (ft_parse_around(data, map->map, i, j) == 1)
+					return (1);
+			}
+			j++;
 		}
-		free(str);
 		i++;
 	}
-	if (ft_first_check(data) == 1)
+	return (0);
+}
+
+int	ft_check_map(t_data *data)
+{
+	t_map	*tmp;
+
+	tmp = data->map;
+	while (tmp->next)
+		tmp = tmp->next;
+	if (ft_check_floor(data, tmp) == 1)
+	{
+		printf("MAP PAS OK\n");
 		return (1);
-	ft_malloc_map(data);
+	}
+	if (ft_check_start(data, tmp) == 1)
+	{
+		printf("START PAS OK");
+		return (1);
+	}
+	printf("MAP OK\n");
 	return (0);
 }

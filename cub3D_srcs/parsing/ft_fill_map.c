@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fill_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exodeus <exodeus@student.42.fr>            +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:29:34 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/21 23:11:35 by exodeus          ###   ########.fr       */
+/*   Updated: 2022/03/22 14:01:39 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_check_line(char *str)
 	while (str[i] && str[i] != '\n')
 	{
 		if (str[i] == '1' || str[i] == '0' || str[i] == ' '
-			|| str[i] == 'N' || str[i] == 'E')
+			|| str[i] == 'N' || str[i] == 'E' || str[i] == 'S' || str[i] == 'W')
 			i++;
 		else
 			return (2);
@@ -59,16 +59,16 @@ void	ft_create_area(t_data *data, int fd)
 	i = 0;
 	while (i < data->before_map)
 	{
-		str = get_next_line(fd);
-		free(str);
+		str = get_next_line(data, fd);
+		ft_free(data, str);
 		i++;
 	}
 	i = 0;
 	while (i < data->map_height)
 	{
-		str = get_next_line(fd);
+		str = get_next_line(data, fd);
 		ft_put_in_area(data, str, i);
-		free(str);
+		ft_free(data, str);
 		i++;
 	}
 }
