@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/22 14:57:05 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 18:30:54 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,20 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
+# include "../mlx/mlx_int.h"
+# include "../mlx/mlx.h"
+
+# define PXL 1000
 
 typedef struct s_data			t_data;
 typedef struct s_map			t_map;
 typedef struct s_garb			t_garb;
 typedef struct s_player			t_player;
 typedef struct s_coor			t_coor;
+typedef struct s_game			t_game;
+typedef struct s_mini_map		t_mini_map;
+typedef struct s_test			t_test;
+typedef struct s_float			t_float;
 
 struct s_garb
 {
@@ -43,6 +51,11 @@ struct s_coor
 	int	y;
 };
 
+struct s_float
+{
+	float	x;
+	float	y;
+};
 
 struct s_player
 {
@@ -58,8 +71,31 @@ struct	s_map
 	t_map	*prev;
 };
 
+struct s_test
+{
+	void	*img_ptr;
+	int		high;
+	int		len;
+	t_coor	coor;
+};
+
+
+struct	s_game
+{
+	t_coor	size;
+};
+
+struct	s_mini_map
+{
+	int	size_x;
+	int	size_y;
+	t_coor	coor;
+};
+
 struct s_data
 {
+	void		*mlx;
+	void		*win;
 	int			map_height;
 	int			map_width;
 	int			map_check;
@@ -67,6 +103,9 @@ struct s_data
 	t_garb		*garbage;
 	t_map		*map;
 	t_player	player;
+	t_game		game;
+	t_mini_map	mini;
+	t_test		img;
 };
 
 /* MAIN */
@@ -131,5 +170,9 @@ int		ft_find_identifier_2(t_data *data, char *str);
 int		ft_check_map(t_data *data);
 int		ft_check_start(t_data *data, t_map *tmp);
 void	ft_replace_space(t_data *data);
+
+/* GAME */
+void	ft_cub3d(t_data data);
+void	ft_init_mini_map(t_data *data);
 
 #endif

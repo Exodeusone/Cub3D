@@ -6,7 +6,7 @@
 #    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/03/22 14:57:16 by julien           ###   ########.fr        #
+#    Updated: 2022/03/22 18:32:57 by julien           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,16 @@ PARS_NAME	= ft_check_name_map.c\
 
 PARS_PATH	= cub3D_srcs/parsing
 
+# GAME
+GAME_NAME	= ft_cub3d.c\
+
+GAME_PATH	= cub3D_srcs/game
+
+# MINI_MAP
+MINI_NAME	= ft_init_mini_map.c\
+
+MINI_PATH	= cub3D_srcs/mini_map
+
 #INCLUDE :
 INC_PATH	= cub3D_include
 
@@ -91,6 +101,8 @@ SRCS 	= 	${addprefix ${SRCS_PATH}/,${SRCS_NAME}}\
 			${addprefix ${GARB_PATH}/,${GARB_NAME}}\
 			${addprefix ${UTILS_PATH}/,${UTILS_NAME}}\
 			${addprefix ${PARS_PATH}/,${PARS_NAME}}\
+			${addprefix ${GAME_PATH}/,${GAME_NAME}}\
+			${addprefix ${MINI_PATH}/,${MINI_NAME}}\
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -98,7 +110,7 @@ OBJS	=	${SRCS:.c=.o}
 all:	${NAME}
 
 ${NAME}:	${OBJS} ${INC_PATH}/cub3D.h
-			$(CC) ${CFLAG} ${OBJS} -Lmlx -lmlx -L/usr/lib -I mlx -lm -lz -o ${NAME}
+			$(CC) ${CFLAG} ${OBJS} -Lmlx -lmlx -L/usr/lib -I mlx -lXext -lX11 -lm -lz -o ${NAME}
 
 
 %.o : %.c

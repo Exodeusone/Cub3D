@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/22 15:29:37 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/22 17:33:09 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int argc, char **argv)
 		clear_garbage(&data);
 		return (1);
 	}
+	ft_init_mini_map(&data);
+	ft_cub3d(data);
 	clear_garbage(&data);
 	return (0);
 }
