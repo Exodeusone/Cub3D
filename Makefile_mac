@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+         #
+#    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/03/23 15:17:13 by upean-de         ###   ########.fr        #
+#    Updated: 2022/03/22 14:57:16 by julien           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ _IBLANC		=	\033[47m
 #General variable :
 NAME	= cub3D
 
-CC		= gcc
+CC		= clang
 
-CFLAG	= -Wall -Werror -Wextra
+CFLAG	= -Wall -Werror -Wextra -g3
 
 #SRCS :
 SRCS_NAME	= main.c\
@@ -83,25 +83,14 @@ PARS_NAME	= ft_check_name_map.c\
 
 PARS_PATH	= cub3D_srcs/parsing
 
-#MINIMAP
-MINIMAP_NAME	= init_map.c\
-				  draw_map.c\
-				  draw_player.c\
-				  move.c\
-
-MINIMAP_PATH	= cub3D_srcs/minimap
-
 #INCLUDE :
-
 INC_PATH	= cub3D_include
 
 #FOR_COMPIL :
-
 SRCS 	= 	${addprefix ${SRCS_PATH}/,${SRCS_NAME}}\
 			${addprefix ${GARB_PATH}/,${GARB_NAME}}\
 			${addprefix ${UTILS_PATH}/,${UTILS_NAME}}\
 			${addprefix ${PARS_PATH}/,${PARS_NAME}}\
-			${addprefix ${MINIMAP_PATH}/,${MINIMAP_NAME}}\
 
 OBJS	=	${SRCS:.c=.o}
 
@@ -109,7 +98,7 @@ OBJS	=	${SRCS:.c=.o}
 all:	${NAME}
 
 ${NAME}:	${OBJS} ${INC_PATH}/cub3D.h
-			$(CC) ${CFLAG} ${OBJS} -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o ${NAME}
+			$(CC) ${CFLAG} ${OBJS} -Lmlx -lmlx -L/usr/lib -I mlx -lm -lz -o ${NAME}
 
 
 %.o : %.c

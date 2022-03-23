@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/22 14:57:05 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/23 15:25:44 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #  define BUFFER_SIZE 1
 # endif
 
+# include "../mlx/mlx.h"
+# include "../mlx/mlx_int.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -31,6 +33,8 @@ typedef struct s_garb			t_garb;
 typedef struct s_player			t_player;
 typedef struct s_coor			t_coor;
 
+# define PI 3.14159265359
+
 struct s_garb
 {
 	void				*point;
@@ -39,8 +43,11 @@ struct s_garb
 
 struct s_coor
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	angle;
 };
 
 
@@ -64,6 +71,8 @@ struct s_data
 	int			map_width;
 	int			map_check;
 	int			before_map;
+	void		*mlx;
+	void		*win;
 	t_garb		*garbage;
 	t_map		*map;
 	t_player	player;
@@ -131,5 +140,17 @@ int		ft_find_identifier_2(t_data *data, char *str);
 int		ft_check_map(t_data *data);
 int		ft_check_start(t_data *data, t_map *tmp);
 void	ft_replace_space(t_data *data);
+
+/* PARSING MAP */
+void	init_minimap(t_data *data);
+int		key_hook(int keycode, t_data *data);
+void	erase_player(t_data *data);
+void	draw_direction(t_data *data);
+void	draw_player(t_data *data);
+void	draw_wall(t_data *data, int x, int y);
+void	draw_map(t_data *data, char **map);
+int		create_trgb(int t, int r, int g, int b);
+int		ft_exit(t_data *data);
+void	erase_direction(t_data *data);
 
 #endif
