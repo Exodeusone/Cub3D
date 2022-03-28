@@ -6,7 +6,7 @@
 #    By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/03/23 15:17:13 by upean-de         ###   ########.fr        #
+#    Updated: 2022/03/28 18:50:31 by upean-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ _IBLANC		=	\033[47m
 #General variable :
 NAME	= cub3D
 
-CC		= gcc
+CC		= clang
 
-CFLAG	= -Wall -Werror -Wextra
+CFLAG	= -g -Wall -Werror -Wextra
 
 #SRCS :
 SRCS_NAME	= main.c\
@@ -88,6 +88,9 @@ MINIMAP_NAME	= init_map.c\
 				  draw_map.c\
 				  draw_player.c\
 				  move.c\
+				  draw_ray.c\
+				  cleaner.c\
+				  check_move.c\
 
 MINIMAP_PATH	= cub3D_srcs/minimap
 

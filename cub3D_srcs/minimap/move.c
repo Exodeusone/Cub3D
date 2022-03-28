@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:07:58 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/23 16:10:02 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:41:38 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,47 @@
 
 void	move_up(t_data *data)
 {
-	erase_player(data);
-	erase_direction(data);
-	data->player.coor.x += data->player.coor.dx;
-	data->player.coor.y += data->player.coor.dy;
-	draw_player(data);
+	if (ok_move_up(data) == 0)
+	{
+		ft_clean_cleaner(data);
+		erase_player(data);
+		data->player.x += data->player.dx;
+		data->player.y += data->player.dy;
+		draw_player(data);
+	}
 }
 
 void	move_down(t_data *data)
 {
+	ft_clean_cleaner(data);
 	erase_player(data);
-	erase_direction(data);
-	data->player.coor.x -= data->player.coor.dx;
-	data->player.coor.y -= data->player.coor.dy;
+	data->player.x -= data->player.dx;
+	data->player.y -= data->player.dy;
 	draw_player(data);
 }
 
 void	move_right(t_data *data)
 {
+	ft_clean_cleaner(data);
 	erase_player(data);
-	erase_direction(data);
-	data->player.coor.angle += 0.1;
-	if (data->player.coor.angle > 2 * PI)
-		data->player.coor.angle -= 2 * PI;
-	data->player.coor.dx = cos(data->player.coor.angle) * 5;
-	data->player.coor.dy = sin(data->player.coor.angle) * 5;
+	data->player.angle += 0.1;
+	if (data->player.angle > 2 * PI)
+		data->player.angle -= 2 * PI;
+	data->player.dx = cos(data->player.angle) * 5;
+	data->player.dy = sin(data->player.angle) * 5;
 	draw_player(data);
+
 }
 
 void	move_left(t_data *data)
 {
+	ft_clean_cleaner(data);
 	erase_player(data);
-	erase_direction(data);
-	data->player.coor.angle -= 0.1;
-	if (data->player.coor.angle < 0)
-		data->player.coor.angle += 2 * PI;
-	data->player.coor.dx = cos(data->player.coor.angle) * 5;
-	data->player.coor.dy = sin(data->player.coor.angle) * 5;
+	data->player.angle -= 0.1;
+	if (data->player.angle < 0)
+		data->player.angle += 2 * PI;
+	data->player.dx = cos(data->player.angle) * 5;
+	data->player.dy = sin(data->player.angle) * 5;
 	draw_player(data);
 }
 

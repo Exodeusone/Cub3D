@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/23 11:15:47 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:22:13 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	ft_init_data(t_data *data)
 	data->map_width = 0;
 	data->map_check = 0;
 	data->before_map = 0;
-	data->player.coor.x = 0;
-	data->player.coor.y = 0;
+	data->player.x = 0;
+	data->player.y = 0;
+	data->cleaner = NULL;
 }
 
 int	main(int argc, char **argv)

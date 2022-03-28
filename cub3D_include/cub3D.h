@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/23 15:25:44 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:50:16 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ typedef struct s_data			t_data;
 typedef struct s_map			t_map;
 typedef struct s_garb			t_garb;
 typedef struct s_player			t_player;
-typedef struct s_coor			t_coor;
+typedef struct s_cleaner		t_cleaner;
 
 # define PI 3.14159265359
+# define MAP_S 64
+# define P2 PI/2
+# define P3 3*PI/2
+# define DR 0.0174533
 
 struct s_garb
 {
@@ -41,19 +45,27 @@ struct s_garb
 	struct s_garb	*next;
 };
 
-struct s_coor
+struct s_player
 {
 	float	x;
 	float	y;
 	float	dx;
 	float	dy;
 	float	angle;
-};
-
-
-struct s_player
-{
-	t_coor	coor;
+	int		mx;
+	int		my;
+	int		dof;
+	float	rx;
+	float	ry;
+	float	ra;
+	float	xo;
+	float	yo;
+	float	disH;
+	float	hx;
+	float	hy;
+	float	disV;
+	float	vx;
+	float	vy;
 };
 
 struct	s_map
@@ -63,6 +75,17 @@ struct	s_map
 	char	**map;
 	t_map	*next;
 	t_map	*prev;
+};
+
+struct s_cleaner
+{
+	float	x;
+	float	y;
+	float	ra;
+	float	ry;
+	float	dy;
+	t_cleaner	*next;
+	t_cleaner	*prev;
 };
 
 struct s_data
@@ -76,6 +99,7 @@ struct s_data
 	t_garb		*garbage;
 	t_map		*map;
 	t_player	player;
+	t_cleaner	*cleaner;
 };
 
 /* MAIN */
@@ -141,7 +165,7 @@ int		ft_check_map(t_data *data);
 int		ft_check_start(t_data *data, t_map *tmp);
 void	ft_replace_space(t_data *data);
 
-/* PARSING MAP */
+/* MINIMAP */
 void	init_minimap(t_data *data);
 int		key_hook(int keycode, t_data *data);
 void	erase_player(t_data *data);
@@ -151,6 +175,10 @@ void	draw_wall(t_data *data, int x, int y);
 void	draw_map(t_data *data, char **map);
 int		create_trgb(int t, int r, int g, int b);
 int		ft_exit(t_data *data);
-void	erase_direction(t_data *data);
+void	erase_direction(t_data *data, t_cleaner *tmp);
+void	draw_ray(t_data	*data, char **map);
+void	add_cleaner(t_data *data);
+void	ft_clean_cleaner(t_data *data);
+int		ok_move_up(t_data *data);
 
 #endif

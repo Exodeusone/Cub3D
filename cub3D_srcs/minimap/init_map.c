@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:05:20 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/23 15:54:12 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/28 18:37:06 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void	get_coor(t_data *data, t_map *tmp)
 	int	j;
 
 	i = 0;
-	data->player.coor.angle = 0;
-	data->player.coor.dx = cos(data->player.coor.angle) * 5;
-	data->player.coor.dy = sin(data->player.coor.angle) * 5;
+	data->player.angle = 0;
+	data->player.dx = cos(data->player.angle) * 5;
+	data->player.dy = sin(data->player.angle) * 5;
+	printf("%f\n", data->player.dx);
+	printf("%f\n", data->player.dy);
 	while (tmp->map[i])
 	{
 		j = 0;
@@ -44,8 +46,8 @@ void	get_coor(t_data *data, t_map *tmp)
 			if (tmp->map[i][j] == 'N' || tmp->map[i][j] == 'S'
 				|| tmp->map[i][j] == 'E' || tmp->map[i][j] == 'W')
 			{
-				data->player.coor.x = j * 50 + 20;
-				data->player.coor.y = i * 50 + 20;
+				data->player.x = j * MAP_S + 20;
+				data->player.y = i * MAP_S + 20;
 				return ;
 			}
 			j++;
@@ -67,7 +69,8 @@ void	init_minimap(t_data *data)
 	}
 	while (tmp->map == NULL)
 		tmp = tmp->next;
-	data->win = mlx_new_window(data->mlx, ft_strlen(tmp->map[0]) * 50, ft_strslen(tmp->map) * 50, "Cub3d");
+	data->map_width -= 1;
+	data->win = mlx_new_window(data->mlx, data->map_width * MAP_S, data->map_height * MAP_S, "Cub3d");
 	get_coor(data, tmp);
 
 	mlx_key_hook(data->win, &key_hook, data);
