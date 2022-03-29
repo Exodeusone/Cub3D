@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:07:58 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/28 18:41:38 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:55:51 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,59 @@ void	move_up(t_data *data)
 
 void	move_down(t_data *data)
 {
-	ft_clean_cleaner(data);
-	erase_player(data);
-	data->player.x -= data->player.dx;
-	data->player.y -= data->player.dy;
-	draw_player(data);
+	if (ok_move_down(data) == 0)
+	{
+		ft_clean_cleaner(data);
+		erase_player(data);
+		data->player.x -= data->player.dx;
+		data->player.y -= data->player.dy;
+		draw_player(data);
+	}
 }
 
 void	move_right(t_data *data)
+{
+	float	angle;
+	float	dx;
+	float	dy;
+
+	angle = data->player.angle + P2;
+	if (angle > 2 * PI)
+		angle -= 2 * PI;
+	dx = cos(angle) * 5;
+	dy = sin(angle) * 5;
+	if (ok_move_side(data, dx, dy) == 0)
+	{
+		ft_clean_cleaner(data);
+		erase_player(data);
+		data->player.x += dx;
+		data->player.y += dy;
+		draw_player(data);
+	}
+}
+
+void	move_left(t_data *data)
+{
+	float	angle;
+	float	dx;
+	float	dy;
+
+	angle = data->player.angle - P2;
+	if (angle < 0)
+		angle += 2 * PI;
+	dx = cos(angle) * 5;
+	dy = sin(angle) * 5;
+	if (ok_move_side(data, dx, dy) == 0)
+	{
+		ft_clean_cleaner(data);
+		erase_player(data);
+		data->player.x += dx;
+		data->player.y += dy;
+		draw_player(data);
+	}
+}
+
+void	look_right(t_data *data)
 {
 	ft_clean_cleaner(data);
 	erase_player(data);
@@ -46,7 +91,7 @@ void	move_right(t_data *data)
 
 }
 
-void	move_left(t_data *data)
+void	look_left(t_data *data)
 {
 	ft_clean_cleaner(data);
 	erase_player(data);
@@ -66,9 +111,13 @@ int	key_hook(int keycode, t_data *data)
 		move_up(data);
 	if (keycode == 's')
 		move_down(data);
-	if (keycode == 'd')
-		move_right(data);
 	if (keycode == 'a')
 		move_left(data);
+	if (keycode == 'd')
+		move_right(data);
+	if (keycode == 65363)
+		look_right(data);
+	if (keycode == 65361)
+		look_left(data);
 	return (0);
 }

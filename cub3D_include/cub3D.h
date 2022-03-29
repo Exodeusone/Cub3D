@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/28 18:50:16 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:55:08 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ struct s_player
 	float	disV;
 	float	vx;
 	float	vy;
+	float	disT;
 };
 
 struct	s_map
@@ -96,6 +97,7 @@ struct s_data
 	int			before_map;
 	void		*mlx;
 	void		*win;
+	void		*win2;
 	t_garb		*garbage;
 	t_map		*map;
 	t_player	player;
@@ -180,5 +182,7 @@ void	draw_ray(t_data	*data, char **map);
 void	add_cleaner(t_data *data);
 void	ft_clean_cleaner(t_data *data);
 int		ok_move_up(t_data *data);
+int		ok_move_down(t_data *data);
+int		ok_move_side(t_data *data, float dx, float dy);
 
 #endif
