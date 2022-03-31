@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/29 18:55:08 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 11:26:02 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_cleaner		t_cleaner;
 # define P2 PI/2
 # define P3 3*PI/2
 # define DR 0.0174533
+# define SCREEN_W 1080
+# define SCREEN_H 1080
 
 struct s_garb
 {
@@ -67,6 +69,7 @@ struct s_player
 	float	vx;
 	float	vy;
 	float	disT;
+	int		side;
 };
 
 struct	s_map
@@ -184,5 +187,6 @@ void	ft_clean_cleaner(t_data *data);
 int		ok_move_up(t_data *data);
 int		ok_move_down(t_data *data);
 int		ok_move_side(t_data *data, float dx, float dy);
+void	draw_3d(t_data *data, int r, int r_limit);
 
 #endif

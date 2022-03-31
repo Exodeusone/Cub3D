@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:05:20 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/29 18:31:15 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 10:18:42 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	init_minimap(t_data *data)
 	while (tmp->map == NULL)
 		tmp = tmp->next;
 	data->map_width -= 1;
-	data->win2 = mlx_new_window(data->mlx, 1920, 1080, "Cub3d");
+	data->win2 = mlx_new_window(data->mlx, SCREEN_W, SCREEN_H, "Cub3d");
 	data->win = mlx_new_window(data->mlx, data->map_width * MAP_S, data->map_height * MAP_S, "minimap");
 	get_coor(data, tmp);
 	mlx_key_hook(data->win, &key_hook, data);

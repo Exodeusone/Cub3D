@@ -6,7 +6,7 @@
 #    By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/03/28 18:50:31 by upean-de         ###   ########.fr        #
+#    Updated: 2022/03/31 10:45:47 by upean-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ MINIMAP_NAME	= init_map.c\
 				  draw_ray.c\
 				  cleaner.c\
 				  check_move.c\
+				  draw_3d.c\
 
 MINIMAP_PATH	= cub3D_srcs/minimap
 

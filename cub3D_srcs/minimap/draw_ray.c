@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:18:22 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/29 15:45:07 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 11:37:35 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ float	dist(t_data *data, float bx, float by, float ang)
 void	draw_ray(t_data	*data, char **map)
 {
 	int		r;
+	int		r_limit;
 	float	a_tan;
 	float	n_tan;
+	float	ca;
 
 	r = 0;
+	r_limit = 60 * 2;
 	a_tan = 0;
 	n_tan = 0;
 	data->player.ra = data->player.angle - DR * 30;
@@ -37,7 +40,7 @@ void	draw_ray(t_data	*data, char **map)
 		data->player.ra += 2 * PI;
 	if (data->player.ra > 2 * PI)
 		data->player.ra -= 2 * PI;
-	while (r < 60)
+	while (r < r_limit)
 	{
 		data->player.dof = 0;
 		data->player.disH = 1000000;
@@ -134,17 +137,26 @@ void	draw_ray(t_data	*data, char **map)
 			data->player.rx = data->player.vx;
 			data->player.ry = data->player.vy;
 			data->player.disT = data->player.disV;
+			data->player.side = 1;
 		}
 		if (data->player.disV > data->player.disH)
 		{
 			data->player.rx = data->player.hx;
 			data->player.ry = data->player.hy;
 			data->player.disT = data->player.disH;
+			data->player.side = 0;
 		}
+		ca = data->player.angle - data->player.ra;
+		if (ca < 0)
+			ca += 2 * PI;
+		if (ca > 2 * PI)
+			ca -= 2 * PI;
+		data->player.disT = data->player.disT* cos(ca);
 		r++;
 		draw_direction(data);
 		add_cleaner(data);
-		data->player.ra += DR;
+		draw_3d(data, r, r_limit);
+		data->player.ra += DR / 2;
 		if (data->player.ra <= 0)
 			data->player.ra += 2 * PI;
 		if (data->player.ra > 2 * PI)

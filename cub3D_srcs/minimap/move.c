@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:07:58 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/29 18:55:51 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 11:32:19 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	look_left(t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
+	mlx_clear_window(data->mlx, data->win2);
 	if (keycode == 65307)
 		ft_exit(data);
 	if (keycode == 'w')
