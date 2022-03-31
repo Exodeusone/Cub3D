@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:18:22 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 11:37:35 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:49:58 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_ray(t_data	*data, char **map)
 	float	ca;
 
 	r = 0;
-	r_limit = 60 * 2;
+	r_limit = 60 * 4;
 	a_tan = 0;
 	n_tan = 0;
 	data->player.ra = data->player.angle - DR * 30;
@@ -154,12 +154,16 @@ void	draw_ray(t_data	*data, char **map)
 		data->player.disT = data->player.disT* cos(ca);
 		r++;
 		draw_direction(data);
-		add_cleaner(data);
+		// add_cleaner(data);
 		draw_3d(data, r, r_limit);
-		data->player.ra += DR / 2;
+		data->player.ra += DR / 4;
 		if (data->player.ra <= 0)
 			data->player.ra += 2 * PI;
 		if (data->player.ra > 2 * PI)
 			data->player.ra -= 2 * PI;
 	}
+	mlx_put_image_to_window(data->mlx, data->win2, data->asset[0].img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->asset[1].img, 0, 0);
+	mlx_destroy_image(data->mlx, data->asset[0].img);
+	mlx_destroy_image(data->mlx, data->asset[1].img);
 }

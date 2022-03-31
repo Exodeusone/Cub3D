@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:12:43 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/29 15:09:05 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:22:33 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,12 @@ void	draw_direction(t_data *data)
 	y = data->player.y;
 	newdx = cos(data->player.ra);
 	newdy = sin(data->player.ra);
-	// printf("y : %f || ry : %f || dy : %f || ra : %f -> newdy : %f -> y += newdy : %f\n", y, data->player.ry, data->player.dy, data->player.ra, newdy, y + newdy);
 	if (y > data->player.ry && (data->player.dy > 0.000003 || data->player.dy < -0.000003))
 	{
-		// printf("OK!\n");
 		while (y > data->player.ry)
 		{
-			// printf("y : %f || ry : %f || newdy : %f\n", y, data->player.ry, newdy);
-			mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 0, 0));
+			data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
+			// mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 0, 0));
 			x += newdx;
 			y += newdy;
 		}
@@ -93,10 +91,10 @@ void	draw_direction(t_data *data)
 	}
 	if (y < data->player.ry && (data->player.dy > 0.000003 || data->player.dy < -0.000003))
 	{
-		// printf("LOOL!\n");
 		while (y < data->player.ry)
 		{
-			mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 0, 0));
+			data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
+			// mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 0, 0));
 			x += newdx;
 			y += newdy;
 		}
@@ -108,6 +106,7 @@ void	draw_player(t_data *data)
 {
 	int		i;
 	int		j;
+
 	t_map	*tmp;
 	tmp = data->map;
 	i = 0;
@@ -116,7 +115,8 @@ void	draw_player(t_data *data)
 		j = 0;
 		while (j < 10)
 		{
-			mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, create_trgb(0, 255, 0, 0));
+			data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 255, 0, 0);
+			// mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, create_trgb(0, 255, 0, 0));
 			data->player.x++;
 			j++;
 		}

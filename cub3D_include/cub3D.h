@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/31 11:26:02 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:21:24 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ typedef struct s_map			t_map;
 typedef struct s_garb			t_garb;
 typedef struct s_player			t_player;
 typedef struct s_cleaner		t_cleaner;
+typedef struct s_asset			t_asset;
 
 # define PI 3.14159265359
 # define MAP_S 64
 # define P2 PI/2
 # define P3 3*PI/2
 # define DR 0.0174533
-# define SCREEN_W 1080
-# define SCREEN_H 1080
+# define SCREEN_W 960
+# define SCREEN_H 960
 
 struct s_garb
 {
@@ -92,6 +93,17 @@ struct s_cleaner
 	t_cleaner	*prev;
 };
 
+struct s_asset
+{
+	void	*img;
+	int		width;
+	int		height;
+	int		*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+};
+
 struct s_data
 {
 	int			map_height;
@@ -105,6 +117,7 @@ struct s_data
 	t_map		*map;
 	t_player	player;
 	t_cleaner	*cleaner;
+	t_asset		asset[4];
 };
 
 /* MAIN */
@@ -188,5 +201,6 @@ int		ok_move_up(t_data *data);
 int		ok_move_down(t_data *data);
 int		ok_move_side(t_data *data, float dx, float dy);
 void	draw_3d(t_data *data, int r, int r_limit);
+void	init_assets(t_data *data);
 
 #endif
