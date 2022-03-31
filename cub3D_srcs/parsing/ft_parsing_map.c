@@ -6,37 +6,11 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:39:25 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/22 16:03:55 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 22:02:36 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
-
-void	print_map(t_map *map)
-{
-	t_map	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = map;
-	while (tmp)
-	{
-		if (tmp->identifier != NULL)
-			printf("%s ", tmp->identifier);
-		if (tmp->path != NULL)
-			printf("%s", tmp->path);
-		if (tmp->map != NULL)
-		{
-			printf("\n");
-			while (tmp->map[i])
-			{
-				printf("%s\n", tmp->map[i]);
-				i++;
-			}
-		}
-		tmp = tmp->next;
-	}
-}
 
 int	ft_parse_fd(t_data *data, int fd, char *str)
 {
@@ -48,7 +22,6 @@ int	ft_parse_fd(t_data *data, int fd, char *str)
 	if (ft_check_map(data) == 1)
 		return (1);
 	ft_replace_space(data);
-	print_map(data->map);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:35:26 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 15:29:10 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:23:27 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_get_my_path(char *str)
 	return (&str[i]);
 }
 
-char	*ft_get_my_path_2(t_data *data, char *str)
+char	*ft_get_my_path_2(t_data *data, char *str, char c)
 {
 	int	i;
 
@@ -38,16 +38,16 @@ char	*ft_get_my_path_2(t_data *data, char *str)
 		i++;
 	if (str[i] == '\n')
 		return (NULL);
-	if (ft_check_rgb(data, &str[i]) == 1)
+	if (ft_check_rgb(data, &str[i], c) == 1)
 		return (NULL);
 	return (&str[i]);
 }
 
 int	ft_check_identifier_1(t_data *data, char *str)
 {
-	t_map	*tmp;
+	t_fd	*tmp;
 
-	tmp = data->map;
+	tmp = data->fd;
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->identifier, str, 2) == 0)
@@ -69,18 +69,18 @@ int	ft_check_identifier_1(t_data *data, char *str)
 	return (0);
 }
 
-int	ft_check_identifier_2(t_data *data, char *str)
+int	ft_check_identifier_2(t_data *data, char *str, char c)
 {
-	t_map	*tmp;
+	t_fd	*tmp;
 
-	tmp = data->map;
+	tmp = data->fd;
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->identifier, str, 1) == 0)
 		{
 			if (tmp->path == NULL)
 			{
-				tmp->path = ft_strdup(data, ft_get_my_path_2(data, str));
+				tmp->path = ft_strdup(data, ft_get_my_path_2(data, str, c));
 				if (tmp->path == NULL)
 					return (ft_puterr("Error\n"),
 						ft_puterr("You need to put some valid rgb\n"), 1);
@@ -97,11 +97,11 @@ int	ft_check_identifier_2(t_data *data, char *str)
 
 int	ft_check_all_identifier(t_data *data)
 {
-	t_map	*tmp;
+	t_fd	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = data->map;
+	tmp = data->fd;
 	while (i < 6)
 	{
 		if (tmp->path == NULL)

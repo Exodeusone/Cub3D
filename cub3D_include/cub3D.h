@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/31 16:21:24 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:50:06 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@
 # include <math.h>
 
 typedef struct s_data			t_data;
-typedef struct s_map			t_map;
+typedef struct s_fd				t_fd;
 typedef struct s_garb			t_garb;
 typedef struct s_player			t_player;
 typedef struct s_cleaner		t_cleaner;
 typedef struct s_asset			t_asset;
+typedef struct s_rgb			t_rgb;
+typedef struct s_path			t_path;
 
 # define PI 3.14159265359
 # define MAP_S 64
@@ -41,6 +43,13 @@ typedef struct s_asset			t_asset;
 # define DR 0.0174533
 # define SCREEN_W 960
 # define SCREEN_H 960
+
+struct s_rgb
+{
+	int	red;
+	int	green;
+	int	blue;
+};
 
 struct s_garb
 {
@@ -73,13 +82,13 @@ struct s_player
 	int		side;
 };
 
-struct	s_map
+struct	s_fd
 {
 	char	*identifier;
 	char	*path;
 	char	**map;
-	t_map	*next;
-	t_map	*prev;
+	t_fd	*next;
+	t_fd	*prev;
 };
 
 struct s_cleaner
@@ -104,6 +113,16 @@ struct s_asset
 	int		endian;
 };
 
+struct s_path
+{
+	char *north;
+	char *south;
+	char *east;
+	char *west;
+
+};
+
+
 struct s_data
 {
 	int			map_height;
@@ -113,8 +132,12 @@ struct s_data
 	void		*mlx;
 	void		*win;
 	void		*win2;
+	char		**map;
+	t_path		path;
+	t_rgb		cell;
+	t_rgb		floor;
 	t_garb		*garbage;
-	t_map		*map;
+	t_fd		*fd;
 	t_player	player;
 	t_cleaner	*cleaner;
 	t_asset		asset[4];
@@ -149,6 +172,8 @@ char	**ft_split(t_data *data, char *s, char c);
 void	ft_free_strs(t_data *data, char **strs);
 int		ft_strslen(char **strs);
 int		ft_atoi(const char *str);
+int		ft_strlen_rgb(char *str);
+char	*ft_strdup_path(t_data *data, char *s1);
 
 /* CHECK MAP NAME */
 int		ft_check_name_map(char *str);
@@ -160,11 +185,10 @@ int		ft_parsing_map(t_data *data, char *str);
 int		ft_parse_fd(t_data *data, int fd, char *str);
 void	ft_create_map(t_data *data);
 void	ft_add_map(t_data *data, char *str);
-void	ft_new_map(t_map *map);
+void	ft_new_map(t_fd *map);
 int		ft_check_all_identifier(t_data *data);
-int		ft_check_identifier_2(t_data *data, char *str);
 int		ft_check_identifier_1(t_data *data, char *str);
-char	*ft_get_my_path_2(t_data *data, char *str);
+char	*ft_get_my_path_2(t_data *data, char *str, char c);
 char	*ft_get_my_path(char *str);
 int		ft_read_fd(t_data *data, int fd);
 int		ft_check_read(t_data *data, char *str, int j);
@@ -172,15 +196,15 @@ int		ft_get_my_size_map(t_data *data, char *str, int i);
 void	ft_malloc_map(t_data *data);
 int		ft_first_check(t_data *data);
 int		ft_find_identifier(t_data *data, char *str);
-int		ft_check_rgb(t_data *data, char *str);
+int		ft_check_rgb(t_data *data, char *str, char c);
 int		ft_check_line(char *str);
 void	ft_put_in_area(t_data *data, char *str, int i);
 void	ft_create_area(t_data *data, int fd);
 int		ft_fill_map(t_data *data, char *str);
 int		ft_find_identifier_1(t_data *data, char *str);
-int		ft_find_identifier_2(t_data *data, char *str);
+int		ft_check_identifier_2(t_data *data, char *str, char c);
 int		ft_check_map(t_data *data);
-int		ft_check_start(t_data *data, t_map *tmp);
+int		ft_check_start(t_data *data, t_fd *tmp);
 void	ft_replace_space(t_data *data);
 
 /* MINIMAP */

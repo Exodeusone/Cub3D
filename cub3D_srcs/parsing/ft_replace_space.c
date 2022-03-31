@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:54:30 by julien            #+#    #+#             */
-/*   Updated: 2022/03/22 15:28:13 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:19:41 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_high_replacement(char **map)
 
 void	ft_replace_space(t_data *data)
 {
-	t_map	*map;
+	t_fd	*map;
 
-	map = data->map;
+	map = data->fd;
 	while (map->next)
 		map = map->next;
 	ft_high_replacement(map->map);

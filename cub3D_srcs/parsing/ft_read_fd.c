@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:35 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 15:28:05 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:18:31 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	ft_first_check(t_data *data)
 
 void	ft_malloc_map(t_data *data)
 {
-	t_map	*tmp;
+	t_fd	*tmp;
 	int		i;
 	int		j;
 
 	i = 0;
-	tmp = data->map;
+	tmp = data->fd;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->map = ft_malloc(data, sizeof(char *) * (data->map_height + 1));

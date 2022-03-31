@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:42:58 by julien            #+#    #+#             */
-/*   Updated: 2022/03/22 14:43:43 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:32:48 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ int	ft_atoi(const char *str)
 	return (result * negative);
 }
 
+int	ft_strlen_rgb(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i] && str[i] != '\n')
+			i++;
+	}
+	return (i);
+}
+
 int	ft_strslen(char **strs)
 {
 	int	i;
@@ -90,4 +103,26 @@ void	ft_free_strs(t_data *data, char **strs)
 		ft_free(data, strs);
 		strs = NULL;
 	}
+}
+
+char	*ft_strdup_path(t_data *data, char *s1)
+{
+	unsigned long	i;
+	size_t			len;
+	char			*s2;
+
+	if (s1 == NULL)
+		return (NULL);
+	i = 0;
+	len = 0;
+	while (s1[len])
+		len++;
+	s2 = ft_malloc(data, sizeof(char) * (len + 1));
+	while (s1[i] && s1[i] != '\n')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }

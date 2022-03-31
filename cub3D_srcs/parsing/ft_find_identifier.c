@@ -6,13 +6,35 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:39:56 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 14:50:42 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:56:51 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-int	ft_ultimate_check_rgb(t_data *data, char *str)
+void	ft_add_rgb(t_data *data, int color, char c, int i)
+{
+	if (c == 'F')
+	{
+		if (i == 0)
+			data->floor.red = color;
+		else if (i == 1)
+			data->floor.green = color;
+		else if (i == 2)
+			data->floor.blue = color;
+	}
+	else
+	{
+		if (i == 0)
+			data->cell.red = color;
+		else if (i == 1)
+			data->cell.green = color;
+		else if (i == 2)
+			data->cell.blue = color;
+	}
+}
+
+int	ft_ultimate_check_rgb(t_data *data, char *str, char c)
 {
 	char	**check;
 	int		i;
@@ -24,18 +46,20 @@ int	ft_ultimate_check_rgb(t_data *data, char *str)
 		return (1);
 	while (check[i])
 	{
-		if (ft_strlen(check[i]) > 3)
+		if (ft_strlen_rgb(check[i]) > 3)
 			return (1);
 		ret = ft_atoi(check[i]);
 		if (ret < 0 || ret > 255)
 			return (1);
+		else
+			ft_add_rgb(data, ret, c, i);
 		i++;
 	}
 	ft_free_strs(data, check);
 	return (0);
 }
 
-int	ft_check_rgb(t_data *data, char *str)
+int	ft_check_rgb(t_data *data, char *str, char c)
 {
 	int	i;
 
@@ -46,7 +70,7 @@ int	ft_check_rgb(t_data *data, char *str)
 			return (1);
 		i++;
 	}
-	if (ft_ultimate_check_rgb(data, str) == 1)
+	if (ft_ultimate_check_rgb(data, str, c) == 1)
 		return (1);
 	return (0);
 }
@@ -80,12 +104,12 @@ int	ft_find_identifier_2(t_data *data, char *str)
 {
 	if (ft_strncmp(str, "F", 1) == 0)
 	{
-		if (ft_check_identifier_2(data, str) == 1)
+		if (ft_check_identifier_2(data, str, 'F') == 1)
 			return (1);
 	}
 	if (ft_strncmp(str, "C", 1) == 0)
 	{
-		if (ft_check_identifier_2(data, str) == 1)
+		if (ft_check_identifier_2(data, str, 'C') == 1)
 			return (1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:10:24 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 18:28:49 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:04:59 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_ceiling(t_data *data, int y_start, int x_start, int x_end)
 		x = x_start;
 		while (x != x_end)
 		{
-			data->asset[0].addr[y * SCREEN_H + x] = create_trgb(0, 0, 0, 100);
+			data->asset[0].addr[y * SCREEN_H + x] = create_trgb(0, data->cell.red, data->cell.green, data->cell.blue);
 			// mlx_pixel_put(data->mlx, data->win2, x, y, create_trgb(0, 0, 0, 100));
 			x++;
 		}
@@ -36,13 +36,14 @@ void	draw_floor(t_data *data, int y_end, int x_start, int x_end)
 	int	y;
 	int	x;
 
+	// printf("%d,%d,%d\n", data->floor.red, data->floor.green, data->floor.blue);
 	y = y_end;
 	while (y != SCREEN_H)
 	{
 		x = x_start;
 		while (x != x_end)
 		{
-			data->asset[0].addr[y * SCREEN_H + x] = create_trgb(0, 100, 100, 100);
+			data->asset[0].addr[y * SCREEN_H + x] = create_trgb(0, data->floor.red, data->floor.green, data->floor.blue);
 			// mlx_pixel_put(data->mlx, data->win2, x, y, create_trgb(0, 100, 100, 100));
 			x++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:12:43 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 17:22:33 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:09:30 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ void	draw_player(t_data *data)
 	int		i;
 	int		j;
 
-	t_map	*tmp;
-	tmp = data->map;
 	i = 0;
 	while (i < 10)
 	{
@@ -125,7 +123,5 @@ void	draw_player(t_data *data)
 		i++;
 	}
 	data->player.y -= j;
-	while (tmp->map == NULL)
-		tmp = tmp->next;
-	draw_ray(data, tmp->map);
+	draw_ray(data, data->map);
 }

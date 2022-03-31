@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:29:34 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/22 15:30:00 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:17:54 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	ft_check_line(char *str)
 
 void	ft_put_in_area(t_data *data, char *str, int i)
 {
-	t_map	*tmp;
+	t_fd	*tmp;
 	int		j;
 
 	j = 0;
-	tmp = data->map;
+	tmp = data->fd;
 	while (tmp->next)
 		tmp = tmp->next;
 	while (str[j] && str[j] != '\n')

@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 11:41:01 by julien            #+#    #+#             */
-/*   Updated: 2022/03/22 15:19:14 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 21:19:06 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_parse_around(t_data *data, char **map, int i, int j)
 	return (0);
 }
 
-int	ft_check_floor(t_data *data, t_map *map)
+int	ft_check_floor(t_data *data, t_fd *map)
 {
 	int	i;
 	int	j;
@@ -96,9 +96,9 @@ int	ft_check_floor(t_data *data, t_map *map)
 
 int	ft_check_map(t_data *data)
 {
-	t_map	*tmp;
+	t_fd	*tmp;
 
-	tmp = data->map;
+	tmp = data->fd;
 	while (tmp->next)
 		tmp = tmp->next;
 	if (ft_check_floor(data, tmp) == 1)
