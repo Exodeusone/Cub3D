@@ -3,14 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:18:22 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 16:49:58 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:49:46 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
+
+void	ft_draw_player_front(t_data *data)
+{
+	int		i;
+	int		j;
+	float angle;
+	float	dx;
+	float	dy;
+
+	angle = data->player.angle;
+	dx = cos(angle);
+	dy = sin(angle);
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		while (j < 10)
+		{
+			data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 0, 255, 0);
+			data->player.x += dx;
+			data->player.y += dy;
+			j++;
+		}
+		data->player.x -= dx * 10;
+		data->player.y -= dy * 10;
+		data->player.y++; 
+		i++;
+	}
+	data->player.y -= i;
+}
+
+void	ft_draw_player_left(t_data *data)
+{
+	int		i;
+	int		j;
+	float angle;
+	float	dx;
+	float	dy;
+
+	angle = data->player.angle - P2;
+	if (angle < 0)
+		angle += 2 * PI;
+	dx = cos(angle);
+	dy = sin(angle);
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 0, 150, 150);
+			data->player.x += dx;
+			data->player.y += dy;
+			j++;
+		}
+		data->player.x -= dx * 5;
+		data->player.y -= dy * 5;
+		data->player.y++; 
+		i++;
+	}
+	data->player.y -= i;
+}
+
+void	ft_draw_player_right(t_data *data)
+{
+	int		i;
+	int		j;
+	float angle;
+	float	dx;
+	float	dy;
+
+	angle = data->player.angle + P2;
+	if (angle > 2 * PI)
+		angle -= 2 * PI;
+	dx = cos(angle);
+	dy = sin(angle);
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 0, 150, 150);
+			data->player.x += dx;
+			data->player.y += dy;
+			j++;
+		}
+		data->player.x -= dx * 5;
+		data->player.y -= dy * 5;
+		data->player.y++; 
+		i++;
+	}
+	data->player.y -= i;
+}
 
 float	dist(t_data *data, float bx, float by, float ang)
 {
@@ -162,6 +256,9 @@ void	draw_ray(t_data	*data, char **map)
 		if (data->player.ra > 2 * PI)
 			data->player.ra -= 2 * PI;
 	}
+	ft_draw_player_front(data);
+	ft_draw_player_left(data);
+	ft_draw_player_right(data);
 	mlx_put_image_to_window(data->mlx, data->win2, data->asset[0].img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->win, data->asset[1].img, 0, 0);
 	mlx_destroy_image(data->mlx, data->asset[0].img);

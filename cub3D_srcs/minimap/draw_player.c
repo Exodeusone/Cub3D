@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:12:43 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 22:09:30 by julien           ###   ########.fr       */
+/*   Updated: 2022/03/31 22:57:21 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	draw_direction(t_data *data)
 		while (y > data->player.ry)
 		{
 			data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
-			// mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 0, 0));
 			x += newdx;
 			y += newdy;
 		}
@@ -94,7 +93,6 @@ void	draw_direction(t_data *data)
 		while (y < data->player.ry)
 		{
 			data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
-			// mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 0, 0));
 			x += newdx;
 			y += newdy;
 		}
@@ -104,24 +102,23 @@ void	draw_direction(t_data *data)
 
 void	draw_player(t_data *data)
 {
-	int		i;
-	int		j;
+	// int		i;
+	// int		j;
 
-	i = 0;
-	while (i < 10)
-	{
-		j = 0;
-		while (j < 10)
-		{
-			data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 255, 0, 0);
-			// mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, create_trgb(0, 255, 0, 0));
-			data->player.x++;
-			j++;
-		}
-		data->player.x -= j;
-		data->player.y++;
-		i++;
-	}
-	data->player.y -= j;
+	// i = 0;
+	// while (i < 10)
+	// {
+	// 	j = 0;
+	// 	while (j < 10)
+	// 	{
+	// 		data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 255, 0, 0);
+	// 		data->player.x++;
+	// 		j++;
+	// 	}
+	// 	data->player.x -= j;
+	// 	data->player.y++;
+	// 	i++;
+	// }
+	// data->player.y -= j;
 	draw_ray(data, data->map);
 }
