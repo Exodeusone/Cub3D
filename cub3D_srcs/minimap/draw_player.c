@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:12:43 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 22:57:21 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/01 00:26:44 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,29 @@ void	draw_direction(t_data *data)
 		}
 		return ;
 	}
-	if (y < data->player.ry && (data->player.dy > 0.000003 || data->player.dy < -0.000003))
+	else if (y < data->player.ry && (data->player.dy > 0.000003 || data->player.dy < -0.000003))
 	{
+		while (y < data->player.ry)
+		{
+			data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
+			x += newdx;
+			y += newdy;
+		}
+		return ;
+	}
+	else	
+	{
+		if (newdy < 0)
+		{
+			newdy *= -1.f;
+			while (y > data->player.ry)
+			{
+				data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
+				x += newdx;
+				y -= newdy;
+			}
+			return ;
+		}
 		while (y < data->player.ry)
 		{
 			data->asset[1].addr[(int)y * data->map_width * MAP_S + (int)x] = create_trgb(0, 255, 0, 0);
