@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/04 21:46:50 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:50:12 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_data			t_data;
 typedef struct s_fd				t_fd;
 typedef struct s_garb			t_garb;
 typedef struct s_player			t_player;
-typedef struct s_cleaner		t_cleaner;
 typedef struct s_asset			t_asset;
 typedef struct s_rgb			t_rgb;
 typedef struct s_path			t_path;
@@ -44,6 +43,47 @@ typedef struct s_display		t_display;
 # define DR 0.0174533
 # define SCREEN_W 960
 # define SCREEN_H 960
+
+struct s_garb
+{
+	void				*point;
+	struct s_garb	*next;
+};
+
+struct s_rgb
+{
+	int	red;
+	int	green;
+	int	blue;
+};
+
+struct	s_fd
+{
+	char	*identifier;
+	char	*path;
+	char	**map;
+	t_fd	*next;
+	t_fd	*prev;
+};
+
+struct s_asset
+{
+	void	*img;
+	int		width;
+	int		height;
+	int		*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+};
+
+struct s_path
+{
+	char *north;
+	char *south;
+	char *east;
+	char *west;
+};
 
 struct s_display
 {
@@ -58,19 +98,6 @@ struct s_display
 	int				tex_y;
 	float			tex_pos;
 	float			step;
-};
-
-struct s_rgb
-{
-	int	red;
-	int	green;
-	int	blue;
-};
-
-struct s_garb
-{
-	void				*point;
-	struct s_garb	*next;
 };
 
 struct s_player
@@ -98,45 +125,6 @@ struct s_player
 	int		side;
 };
 
-struct	s_fd
-{
-	char	*identifier;
-	char	*path;
-	char	**map;
-	t_fd	*next;
-	t_fd	*prev;
-};
-
-struct s_cleaner
-{
-	float		x;
-	float		y;
-	float		ra;
-	float		ry;
-	float		dy;
-	t_cleaner	*next;
-	t_cleaner	*prev;
-};
-
-struct s_asset
-{
-	void	*img;
-	int		width;
-	int		height;
-	int		*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-};
-
-struct s_path
-{
-	char *north;
-	char *south;
-	char *east;
-	char *west;
-};
-
 struct s_data
 {
 	int			map_height;
@@ -153,7 +141,6 @@ struct s_data
 	t_garb		*garbage;
 	t_fd		*fd;
 	t_player	player;
-	t_cleaner	*cleaner;
 	t_asset		asset[6];
 	t_display	display;
 };
@@ -221,6 +208,7 @@ int		ft_check_identifier_2(t_data *data, char *str, char c);
 int		ft_check_map(t_data *data);
 int		ft_check_start(t_data *data, t_fd *tmp);
 void	ft_replace_space(t_data *data);
+void	ft_add_rgb(t_data *data, int color, char c, int i);
 
 /* MINIMAP */
 void	draw_map(t_data *data, char **map);

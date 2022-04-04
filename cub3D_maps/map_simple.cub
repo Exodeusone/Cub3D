@@ -6,8 +6,8 @@ WE ./cub3D_assets/purplestone.xpm
 EA ./cub3D_assets/redbrick.xpm
 
 
-F 100,100,100
-C 0,0,100
+F 150,110,60
+C 100,225,255
 
 
 111111

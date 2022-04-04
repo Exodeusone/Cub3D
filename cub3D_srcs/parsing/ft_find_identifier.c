@@ -6,33 +6,11 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:39:56 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/31 21:56:51 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:49:49 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
-
-void	ft_add_rgb(t_data *data, int color, char c, int i)
-{
-	if (c == 'F')
-	{
-		if (i == 0)
-			data->floor.red = color;
-		else if (i == 1)
-			data->floor.green = color;
-		else if (i == 2)
-			data->floor.blue = color;
-	}
-	else
-	{
-		if (i == 0)
-			data->cell.red = color;
-		else if (i == 1)
-			data->cell.green = color;
-		else if (i == 2)
-			data->cell.blue = color;
-	}
-}
 
 int	ft_ultimate_check_rgb(t_data *data, char *str, char c)
 {

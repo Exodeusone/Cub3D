@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_add_rgb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 21:11:38 by julien            #+#    #+#             */
-/*   Updated: 2022/04/04 22:56:26 by julien           ###   ########.fr       */
+/*   Created: 2022/04/04 22:49:39 by julien            #+#    #+#             */
+/*   Updated: 2022/04/04 22:50:23 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-int	ft_exit(t_data *data)
+void	ft_add_rgb(t_data *data, int color, char c, int i)
 {
-	int	i;
-
-	i = 0;
-	mlx_clear_window(data->mlx, data->win);
-	mlx_clear_window(data->mlx, data->win2);
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_window(data->mlx, data->win2);
-	while (i <= 5)
+	if (c == 'F')
 	{
-		if (data->asset[i].img)
-			mlx_destroy_image(data->mlx, data->asset[i].img);
-		else
-			break ;
-		i++;
+		if (i == 0)
+			data->floor.red = color;
+		else if (i == 1)
+			data->floor.green = color;
+		else if (i == 2)
+			data->floor.blue = color;
 	}
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	clear_garbage(data);
-	exit (0);
+	else
+	{
+		if (i == 0)
+			data->cell.red = color;
+		else if (i == 1)
+			data->cell.green = color;
+		else if (i == 2)
+			data->cell.blue = color;
+	}
 }

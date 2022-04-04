@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/04 21:27:39 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:48:54 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_init_data(t_data *data)
 	data->path.east = NULL;
 	data->path.west = NULL;
 	data->map = NULL;
-	data->cleaner = NULL;
 }
 
 void	ft_get_data_map(t_data *data, t_fd *fd)
@@ -59,7 +58,7 @@ void	ft_clear_fd(t_data *data)
 		ft_free(data, tmp->identifier);
 		tmp->identifier = NULL;
 		ft_free(data, tmp->path);
-		tmp->path =NULL;
+		tmp->path = NULL;
 		ft_free(data, tmp);
 		tmp = NULL;
 	}

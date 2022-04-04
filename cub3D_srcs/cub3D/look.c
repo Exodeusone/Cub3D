@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:15:48 by julien            #+#    #+#             */
-/*   Updated: 2022/04/04 21:33:30 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 22:56:10 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	look_right(t_data *data)
 	data->player.dx = cos(data->player.angle) * 5;
 	data->player.dy = sin(data->player.angle) * 5;
 	draw_ray(data, data->map);
-
 }
 
 void	look_left(t_data *data)
