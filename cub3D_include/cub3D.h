@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/04 22:50:12 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 23:04:37 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,9 @@ int		ft_check_map(t_data *data);
 int		ft_check_start(t_data *data, t_fd *tmp);
 void	ft_replace_space(t_data *data);
 void	ft_add_rgb(t_data *data, int color, char c, int i);
+void	ft_get_data_map(t_data *data, t_fd *fd);
+void	ft_clear_fd(t_data *data);
+void	ft_get_fd(t_data *data);
 
 /* MINIMAP */
 void	draw_map(t_data *data, char **map);

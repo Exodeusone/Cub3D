@@ -6,7 +6,7 @@
 #    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/04/04 22:58:39 by julien           ###   ########.fr        #
+#    Updated: 2022/04/04 23:04:55 by julien           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ PARS_NAME	= ft_check_name_map.c\
 			  ft_check_start.c\
 			  ft_replace_space.c\
 			  ft_add_rgb.c\
+			  ft_get_fd.c\
 
 PARS_PATH	= cub3D_srcs/parsing
 
