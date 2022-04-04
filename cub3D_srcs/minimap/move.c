@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:07:58 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 22:18:51 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 14:02:26 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	move_up(t_data *data)
 	{
 		mlx_clear_window(data->mlx, data->win2);
 		mlx_clear_window(data->mlx, data->win);
-		// ft_clean_cleaner(data);
-		// erase_player(data);
 		data->player.x += data->player.dx;
 		data->player.y += data->player.dy;
 		draw_player(data);
@@ -32,8 +30,6 @@ void	move_down(t_data *data)
 	{
 		mlx_clear_window(data->mlx, data->win2);
 		mlx_clear_window(data->mlx, data->win);
-		// ft_clean_cleaner(data);
-		// erase_player(data);
 		data->player.x -= data->player.dx;
 		data->player.y -= data->player.dy;
 		draw_player(data);
@@ -55,8 +51,6 @@ void	move_right(t_data *data)
 	{
 		mlx_clear_window(data->mlx, data->win2);
 		mlx_clear_window(data->mlx, data->win);
-		// ft_clean_cleaner(data);
-		// erase_player(data);
 		data->player.x += dx;
 		data->player.y += dy;
 		draw_player(data);
@@ -78,8 +72,6 @@ void	move_left(t_data *data)
 	{
 		mlx_clear_window(data->mlx, data->win2);
 		mlx_clear_window(data->mlx, data->win);
-		// ft_clean_cleaner(data);
-		// erase_player(data);
 		data->player.x += dx;
 		data->player.y += dy;
 		draw_player(data);
@@ -90,8 +82,6 @@ void	look_right(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win2);
 	mlx_clear_window(data->mlx, data->win);
-	// ft_clean_cleaner(data);
-	// erase_player(data);
 	data->player.angle += 0.1;
 	if (data->player.angle > 2 * PI)
 		data->player.angle -= 2 * PI;
@@ -105,8 +95,6 @@ void	look_left(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win2);
 	mlx_clear_window(data->mlx, data->win);
-	// ft_clean_cleaner(data);
-	// erase_player(data);
 	data->player.angle -= 0.1;
 	if (data->player.angle < 0)
 		data->player.angle += 2 * PI;

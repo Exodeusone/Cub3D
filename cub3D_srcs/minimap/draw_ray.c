@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:18:22 by upean-de          #+#    #+#             */
-/*   Updated: 2022/04/01 00:15:55 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 15:51:03 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_draw_player_front(t_data *data)
 		}
 		data->player.x -= dx * 10;
 		data->player.y -= dy * 10;
-		data->player.y++; 
+		data->player.y++;
 		i++;
 	}
 	data->player.y -= i;
@@ -68,7 +68,7 @@ void	ft_draw_player_left(t_data *data)
 		}
 		data->player.x -= dx * 5;
 		data->player.y -= dy * 5;
-		data->player.y++; 
+		data->player.y++;
 		i++;
 	}
 	data->player.y -= i;
@@ -100,7 +100,7 @@ void	ft_draw_player_right(t_data *data)
 		}
 		data->player.x -= dx * 5;
 		data->player.y -= dy * 5;
-		data->player.y++; 
+		data->player.y++;
 		i++;
 	}
 	data->player.y -= i;

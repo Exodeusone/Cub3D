@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/03/31 22:20:15 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 15:28:30 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_cleaner		t_cleaner;
 typedef struct s_asset			t_asset;
 typedef struct s_rgb			t_rgb;
 typedef struct s_path			t_path;
+typedef struct s_display		t_display;
 
 # define PI 3.14159265359
 # define MAP_S 64
@@ -43,6 +44,21 @@ typedef struct s_path			t_path;
 # define DR 0.0174533
 # define SCREEN_W 960
 # define SCREEN_H 960
+
+struct s_display
+{
+	int				y_start;
+	int				y_end;
+	int				x_start;
+	int				x_end;
+	int				x;
+	int				y;
+	float			wall_x;
+	int				tex_x;
+	int				tex_y;
+	float			tex_pos;
+	float			step;
+};
 
 struct s_rgb
 {
@@ -93,11 +109,11 @@ struct	s_fd
 
 struct s_cleaner
 {
-	float	x;
-	float	y;
-	float	ra;
-	float	ry;
-	float	dy;
+	float		x;
+	float		y;
+	float		ra;
+	float		ry;
+	float		dy;
 	t_cleaner	*next;
 	t_cleaner	*prev;
 };
@@ -139,7 +155,8 @@ struct s_data
 	t_fd		*fd;
 	t_player	player;
 	t_cleaner	*cleaner;
-	t_asset		asset[4];
+	t_asset		asset[6];
+	t_display	display;
 };
 
 /* MAIN */

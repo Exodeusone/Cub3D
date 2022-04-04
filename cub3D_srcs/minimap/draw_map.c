@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:14:37 by upean-de          #+#    #+#             */
-/*   Updated: 2022/03/31 22:08:39 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 14:02:06 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	draw_wall(t_data *data, int x, int y)
 		while (j < MAP_S - 1)
 		{
 			data->asset[1].addr[y * data->map_width * MAP_S + x] = create_trgb(0, 255, 255, 255);
-			// mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 255, 255, 255));
 			x++;
 			j++;
 		}
