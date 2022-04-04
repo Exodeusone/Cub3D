@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/04 15:28:30 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/04 21:46:50 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ struct s_path
 	char *west;
 };
 
-
 struct s_data
 {
 	int			map_height;
@@ -224,23 +223,37 @@ int		ft_check_start(t_data *data, t_fd *tmp);
 void	ft_replace_space(t_data *data);
 
 /* MINIMAP */
-void	init_minimap(t_data *data);
-int		key_hook(int keycode, t_data *data);
-void	erase_player(t_data *data);
-void	draw_direction(t_data *data);
-void	draw_player(t_data *data);
-void	draw_wall(t_data *data, int x, int y);
 void	draw_map(t_data *data, char **map);
-int		create_trgb(int t, int r, int g, int b);
-int		ft_exit(t_data *data);
-void	erase_direction(t_data *data, t_cleaner *tmp);
-void	draw_ray(t_data	*data, char **map);
-void	add_cleaner(t_data *data);
-void	ft_clean_cleaner(t_data *data);
-int		ok_move_up(t_data *data);
-int		ok_move_down(t_data *data);
-int		ok_move_side(t_data *data, float dx, float dy);
+void	draw_wall(t_data *data, int x, int y);
+void	ft_draw_player_front(t_data *data);
+void	ft_draw_player_left(t_data *data);
+void	ft_draw_player_right(t_data *data);
+void	draw_direction(t_data *data);
+
+/* CUB3D */
+int	ok_move_up(t_data *data);
+int	ok_move_down(t_data *data);
+int	ok_move_side(t_data *data, float dx, float dy);
+void	cub3d(t_data *data);
+int	get_color(t_data *data);
+void	draw_ceiling(t_data *data);
+void	draw_floor(t_data *data);
 void	draw_3d(t_data *data, int r, int r_limit);
+int	ft_exit(t_data *data);
+void	ft_init_start_angle(t_data *data, char c);
+void	get_coor(t_data *data);
 void	init_assets(t_data *data);
+void	ft_get_addr(t_data *data);
+void	ft_get_xpm(t_data *data);
+void	look_right(t_data *data);
+void	look_left(t_data *data);
+void	move_up(t_data *data);
+void	move_down(t_data *data);
+void	move_right(t_data *data);
+void	move_left(t_data *data);
+int	key_hook(int keycode, t_data *data);
+float	dist(t_data *data, float bx, float by, float ang);
+void	draw_ray(t_data	*data, char **map);
+int	create_trgb(int t, int r, int g, int b);
 
 #endif

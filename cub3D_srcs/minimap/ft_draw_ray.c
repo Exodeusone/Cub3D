@@ -6,66 +6,11 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:12:43 by upean-de          #+#    #+#             */
-/*   Updated: 2022/04/01 00:26:44 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/04 21:17:06 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
-
-void	erase_direction(t_data *data, t_cleaner *tmp)
-{
-	float	x;
-	float	y;
-	float	newdx;
-	float	newdy;
-
-	x = tmp->x;
-	y = tmp->y;
-	newdx = cos(tmp->ra) * 5;
-	newdy = sin(tmp->ra) * 5;
-	if (y > tmp->ry && (tmp->dy > 0.000003 || tmp->dy < -0.000003))
-	{
-		while (y > tmp->ry)
-		{
-			mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 0, 0, 0));
-			x += newdx / 5;
-			y += newdy / 5;
-		}
-		return ;
-	}
-	if (y < tmp->ry && (tmp->dy > 0.000003 || tmp->dy < -0.000003))
-	{
-		while (y < tmp->ry)
-		{
-			mlx_pixel_put(data->mlx, data->win, x, y, create_trgb(0, 0, 0, 0));
-			x += newdx / 5;
-			y += newdy / 5;
-		}
-		return ;
-	}
-}
-
-void	erase_player(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 10)
-	{
-		j = 0;
-		while (j < 10)
-		{
-			mlx_pixel_put(data->mlx, data->win, data->player.x, data->player.y, create_trgb(0, 0, 0, 0));
-			data->player.x++;
-			j++;
-		}
-		data->player.x -= j;
-		data->player.y++;
-		i++;
-	}
-	data->player.y -= j;
-}
 
 void	draw_direction(t_data *data)
 {
@@ -119,27 +64,4 @@ void	draw_direction(t_data *data)
 		}
 		return ;
 	}
-}
-
-void	draw_player(t_data *data)
-{
-	// int		i;
-	// int		j;
-
-	// i = 0;
-	// while (i < 10)
-	// {
-	// 	j = 0;
-	// 	while (j < 10)
-	// 	{
-	// 		data->asset[1].addr[(int)data->player.y * data->map_width * MAP_S + (int)data->player.x] = create_trgb(0, 255, 0, 0);
-	// 		data->player.x++;
-	// 		j++;
-	// 	}
-	// 	data->player.x -= j;
-	// 	data->player.y++;
-	// 	i++;
-	// }
-	// data->player.y -= j;
-	draw_ray(data, data->map);
 }
