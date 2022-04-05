@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/04 23:04:37 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 19:03:51 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,18 @@ struct s_display
 	int				x_end;
 	int				x;
 	int				y;
-	float			wall_x;
-	int				tex_x;
-	int				tex_y;
-	float			tex_pos;
-	float			step;
+	float	wall_x;
+	int		tex_x;
+	int		tex_y;
+	float	tex_pos;
+	float	step;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 };
 
 struct s_player
 {
-	float	x;
-	float	y;
-	float	dx;
-	float	dy;
 	float	angle;
 	int		mx;
 	int		my;
@@ -122,7 +121,27 @@ struct s_player
 	float	vx;
 	float	vy;
 	float	disT;
+	float	pos_x;
+	float	pos_y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
+	float	ray_dir_x;
+	float	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	float	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
 	int		side;
+	float	move_speed;
+	float	rot_speed;
 };
 
 struct s_data
@@ -135,6 +154,8 @@ struct s_data
 	void		*win;
 	void		*win2;
 	char		**map;
+	float		time;
+	float		old_time;
 	t_path		path;
 	t_rgb		cell;
 	t_rgb		floor;
@@ -227,8 +248,8 @@ int	ok_move_down(t_data *data);
 int	ok_move_side(t_data *data, float dx, float dy);
 void	cub3d(t_data *data);
 int	get_color(t_data *data);
-void	draw_ceiling(t_data *data);
-void	draw_floor(t_data *data);
+void	draw_ceiling(t_data *data, int x);
+void	draw_floor(t_data *data, int x);
 void	draw_3d(t_data *data, int r, int r_limit);
 int	ft_exit(t_data *data);
 void	ft_init_start_angle(t_data *data, char c);
@@ -246,5 +267,8 @@ int	key_hook(int keycode, t_data *data);
 float	dist(t_data *data, float bx, float by, float ang);
 void	draw_ray(t_data	*data, char **map);
 int	create_trgb(int t, int r, int g, int b);
+void	draw_ray_2(t_data	*data, char **map);
+void	move_up_2(t_data *data);
+void	move_down_2(t_data *data);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                      :+:      :+:    :+:   */
+/*   ft_draw_ray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:12:43 by upean-de          #+#    #+#             */
-/*   Updated: 2022/04/04 21:17:06 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 10:47:40 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	draw_direction(t_data *data)
 	float	newdx;
 	float	newdy;
 
-	x = data->player.x;
-	y = data->player.y;
+	x = data->player.pos_x;
+	y = data->player.pos_y;
 	newdx = cos(data->player.ra);
 	newdy = sin(data->player.ra);
 	if (y > data->player.ry && (data->player.dy > 0.000003 || data->player.dy < -0.000003))
@@ -43,7 +43,7 @@ void	draw_direction(t_data *data)
 		}
 		return ;
 	}
-	else	
+	else
 	{
 		if (newdy < 0)
 		{

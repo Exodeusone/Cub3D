@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
+#    By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/04/04 23:04:55 by julien           ###   ########.fr        #
+#    Updated: 2022/04/05 16:47:27 by upean-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,21 +89,20 @@ PARS_PATH	= cub3D_srcs/parsing
 #MINIMAP
 MINIMAP_NAME	= draw_map.c\
 				  ft_draw_player.c\
-				  ft_draw_ray.c\
 
 MINIMAP_PATH	= cub3D_srcs/minimap
 
 #CUB3D
-CUB3D_NAME		= check_move.c\
-				  cub3d.c\
+CUB3D_NAME		= cub3d.c\
 				  draw_3d.c\
 				  ft_exit.c\
 				  get_coor.c\
 				  init_assets.c\
 				  look.c\
 				  move.c\
-				  raycasting.c\
 				  rgb.c\
+				  draw_ray.c\
+				  move_2.c\
 
 CUB3D_PATH		= cub3D_srcs/cub3D
 

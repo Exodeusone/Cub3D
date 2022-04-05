@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:11:38 by julien            #+#    #+#             */
-/*   Updated: 2022/04/04 22:56:26 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:48:06 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	ft_exit(t_data *data)
 
 	i = 0;
 	mlx_clear_window(data->mlx, data->win);
-	mlx_clear_window(data->mlx, data->win2);
+	// mlx_clear_window(data->mlx, data->win2);
 	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_window(data->mlx, data->win2);
+	// mlx_destroy_window(data->mlx, data->win2);
 	while (i <= 5)
 	{
 		if (data->asset[i].img)

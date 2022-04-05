@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   look.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:15:48 by julien            #+#    #+#             */
-/*   Updated: 2022/04/04 22:56:10 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 18:07:56 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 void	look_right(t_data *data)
 {
-	mlx_clear_window(data->mlx, data->win2);
-	mlx_clear_window(data->mlx, data->win);
-	data->player.angle += 0.1;
-	if (data->player.angle > 2 * PI)
-		data->player.angle -= 2 * PI;
-	data->player.dx = cos(data->player.angle) * 5;
-	data->player.dy = sin(data->player.angle) * 5;
-	draw_ray(data, data->map);
+	float	old_dir_x;
+	float	old_plane_x;
+
+	old_dir_x = data->player.dir_x;
+	old_plane_x = data->player.plane_x;
+	data->player.dir_x = data->player.dir_x * cos(-data->player.rot_speed) - data->player.dir_y * sin(-data->player.rot_speed);
+	data->player.dir_y = old_dir_x * sin(-data->player.rot_speed) + data->player.dir_y * cos(-data->player.rot_speed);
+	data->player.plane_x = data->player.plane_x * cos(-data->player.rot_speed) - data->player.plane_y * sin(-data->player.rot_speed);
+	data->player.plane_y = old_plane_x * sin(-data->player.rot_speed) + data->player.plane_y * cos(-data->player.rot_speed);
+	draw_ray_2(data, data->map);
 }
 
 void	look_left(t_data *data)
 {
-	mlx_clear_window(data->mlx, data->win2);
-	mlx_clear_window(data->mlx, data->win);
-	data->player.angle -= 0.1;
-	if (data->player.angle < 0)
-		data->player.angle += 2 * PI;
-	data->player.dx = cos(data->player.angle) * 5;
-	data->player.dy = sin(data->player.angle) * 5;
-	draw_ray(data, data->map);
+	float	old_dir_x;
+	float	old_plane_x;
+
+	old_dir_x = data->player.dir_x;
+	old_plane_x = data->player.plane_x;
+	data->player.dir_x = data->player.dir_x * cos(data->player.rot_speed) - data->player.dir_y * sin(data->player.rot_speed);
+	data->player.dir_y = old_dir_x * sin(data->player.rot_speed) + data->player.dir_y * cos(data->player.rot_speed);
+	data->player.plane_x = data->player.plane_x * cos(data->player.rot_speed) - data->player.plane_y * sin(data->player.rot_speed);
+	data->player.plane_y = old_plane_x * sin(data->player.rot_speed) + data->player.plane_y * cos(data->player.rot_speed);
+	draw_ray_2(data, data->map);
 }

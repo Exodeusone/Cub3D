@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_start.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:04:51 by julien            #+#    #+#             */
-/*   Updated: 2022/03/31 21:16:06 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 10:48:04 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	ft_nb_start(t_data *data, char **map)
 		{
 			if (ft_start_char(data, map[i][j]) == 1)
 			{
-				if (data->player.x == 0 && data->player.y == 0)
+				if (data->player.pos_x == 0 && data->player.pos_y == 0)
 				{
-					data->player.x = i;
-					data->player.y = j;
+					data->player.pos_x = i;
+					data->player.pos_y = j;
 				}
 				else
 					return (1);
@@ -60,7 +60,7 @@ int	ft_check_start(t_data *data, t_fd *tmp)
 {
 	if (ft_nb_start(data, tmp->map) == 1)
 		return (1);
-	if (data->player.x == 0 && data->player.y == 0)
+	if (data->player.pos_x == 0 && data->player.pos_y == 0)
 		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:07:58 by upean-de          #+#    #+#             */
-/*   Updated: 2022/04/04 21:16:48 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 18:30:52 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,48 @@
 
 void	move_up(t_data *data)
 {
-	if (ok_move_up(data) == 0)
-	{
-		mlx_clear_window(data->mlx, data->win2);
-		mlx_clear_window(data->mlx, data->win);
-		data->player.x += data->player.dx;
-		data->player.y += data->player.dy;
-		draw_ray(data, data->map);
-	}
+	int	i;
+
+	i = 0;
+	mlx_clear_window(data->mlx, data->win);
+	if (data->map[(int)(data->player.pos_x + (data->player.dir_x * data->player.move_speed))][(int)data->player.pos_y] != '1')
+		data->player.pos_x += data->player.dir_x * data->player.move_speed;
+	if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y + (data->player.dir_y * data->player.move_speed * 2))] != '1')
+		data->player.pos_y += data->player.dir_y * data->player.move_speed;
+	draw_ray_2(data, data->map);
 }
 
 void	move_down(t_data *data)
 {
-	if (ok_move_down(data) == 0)
-	{
-		mlx_clear_window(data->mlx, data->win2);
-		mlx_clear_window(data->mlx, data->win);
-		data->player.x -= data->player.dx;
-		data->player.y -= data->player.dy;
-		draw_ray(data, data->map);
-	}
+	mlx_clear_window(data->mlx, data->win);
+	if (data->map[(int)(data->player.pos_x - data->player.dir_x * data->player.move_speed)][(int)data->player.pos_y] != '1')
+		data->player.pos_x -= data->player.dir_x * data->player.move_speed;
+	if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y - data->player.dir_y * data->player.move_speed)] != '1')
+		data->player.pos_y -= data->player.dir_y * data->player.move_speed;
+	draw_ray_2(data, data->map);
 }
 
 void	move_right(t_data *data)
 {
-	float	angle;
-	float	dx;
-	float	dy;
-
-	angle = data->player.angle + P2;
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
-	dx = cos(angle) * 5;
-	dy = sin(angle) * 5;
-	if (ok_move_side(data, dx, dy) == 0)
-	{
-		mlx_clear_window(data->mlx, data->win2);
-		mlx_clear_window(data->mlx, data->win);
-		data->player.x += dx;
-		data->player.y += dy;
-		draw_ray(data, data->map);
-	}
+	// printf("dirx : %f == diry : %f\n", data->player.dir_x, data->player.dir_y);
+	mlx_clear_window(data->mlx, data->win);
+	if (data->map[(int)(data->player.pos_x + (data->player.dir_y * data->player.move_speed))][(int)data->player.pos_y] != '1')
+		data->player.pos_x += data->player.dir_y * data->player.move_speed;
+	if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y + (data->player.dir_x * data->player.move_speed * 2))] != '1')
+		data->player.pos_y += data->player.dir_x * data->player.move_speed;
+	draw_ray_2(data, data->map);
 }
 
 void	move_left(t_data *data)
 {
-	float	angle;
-	float	dx;
-	float	dy;
-
-	angle = data->player.angle - P2;
-	if (angle < 0)
-		angle += 2 * PI;
-	dx = cos(angle) * 5;
-	dy = sin(angle) * 5;
-	if (ok_move_side(data, dx, dy) == 0)
-	{
-		mlx_clear_window(data->mlx, data->win2);
-		mlx_clear_window(data->mlx, data->win);
-		data->player.x += dx;
-		data->player.y += dy;
-		draw_ray(data, data->map);
-	}
+	// printf("dirx : %f == diry : %f\n", data->player.dir_x, data->player.dir_y);
+	// printf("posx : %f == posy : %f\n", data->player.pos_x, data->player.pos_y);
+	mlx_clear_window(data->mlx, data->win);
+	if (data->map[(int)(data->player.pos_x - (data->player.dir_y * data->player.move_speed))][(int)data->player.pos_y] != '1')
+		data->player.pos_x -= data->player.dir_y * data->player.move_speed;
+	if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y - (data->player.dir_x * data->player.move_speed * 2))] != '1')
+		data->player.pos_y -= data->player.dir_x * data->player.move_speed;
+	draw_ray_2(data, data->map);
 }
 
 int	key_hook(int keycode, t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_coor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:02:27 by julien            #+#    #+#             */
-/*   Updated: 2022/04/04 21:32:13 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 19:23:07 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,25 @@
 void	ft_init_start_angle(t_data *data, char c)
 {
 	if (c == 'N')
-		data->player.angle = P3;
+	{
+		data->player.dir_x = -1;
+		data->player.plane_y = 0.66;
+	}
 	if (c == 'S')
-		data->player.angle = P2;
+	{
+		data->player.dir_x = 1;
+		data->player.plane_y = -0.66;
+	}
 	if (c == 'W')
-		data->player.angle = PI;
+	{
+		data->player.dir_y = -1;
+		data->player.plane_x = -0.66;
+	}
 	if (c == 'E')
-		data->player.angle = 0;
+	{
+		data->player.dir_y = 1;
+		data->player.plane_x = 0.66;
+	}
 }
 
 void	get_coor(t_data *data)
@@ -30,9 +42,10 @@ void	get_coor(t_data *data)
 	int	j;
 
 	i = 0;
-	data->player.angle = 0;
-	data->player.dx = cos(data->player.angle) * 5;
-	data->player.dy = sin(data->player.angle) * 5;
+	data->player.plane_x = 0;
+	data->player.plane_y = 0;
+	data->player.dir_x = 0;
+	data->player.dir_y = 0;
 	while (data->map[i])
 	{
 		j = 0;
@@ -41,8 +54,9 @@ void	get_coor(t_data *data)
 			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
 				|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
 			{
-				data->player.x = j * MAP_S + 20;
-				data->player.y = i * MAP_S + 20;
+				data->player.pos_x = (float)i + 0.5;
+				data->player.pos_y = (float)j + 0.5;
+				printf("i %d = j %d\n", i, j);
 				ft_init_start_angle(data, data->map[i][j]);
 				return ;
 			}

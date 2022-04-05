@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/04 23:04:01 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/05 12:05:06 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_init_data(t_data *data)
 	data->map_width = 0;
 	data->map_check = 0;
 	data->before_map = 0;
-	data->player.x = 0;
-	data->player.y = 0;
+	data->player.pos_x = 0;
+	data->player.pos_y = 0;
 	data->cell.red = 0;
 	data->cell.green = 0;
 	data->cell.blue = 0;
