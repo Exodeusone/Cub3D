@@ -1,18 +1,18 @@
 
 
-NO ./cub3D_assets/eagle.xpm
+NO./cub3D_assets/eagle.xpm
 SO ./cub3D_assets/greystone.xpm
 WE ./cub3D_assets/purplestone.xpm
-EA ./cub3D_assets/redbrick.xpm
+EA./cub3D_assets/redbrick.xpm
 
 
-F 150,110,60
-C 100,225,255
+F                        150,110,60
+C100,225,255
 
-
-111111
-100001
-101N001
-1000001
-1001001
-1111111
+1 1  1 1
+      111111111111111111
+      10000000001
+      100001111111111
+      10N001
+      1001001
+      1111111

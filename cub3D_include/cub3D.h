@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/05 19:03:51 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:50:51 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_asset			t_asset;
 typedef struct s_rgb			t_rgb;
 typedef struct s_path			t_path;
 typedef struct s_display		t_display;
+typedef struct s_move			t_move;
 
 # define PI 3.14159265359
 # define MAP_S 64
@@ -48,6 +49,16 @@ struct s_garb
 {
 	void				*point;
 	struct s_garb	*next;
+};
+
+struct s_move
+{
+	int	up;
+	int	down;
+	int	right;
+	int	left;
+	int	rr;
+	int	rl;
 };
 
 struct s_rgb
@@ -87,12 +98,6 @@ struct s_path
 
 struct s_display
 {
-	int				y_start;
-	int				y_end;
-	int				x_start;
-	int				x_end;
-	int				x;
-	int				y;
 	float	wall_x;
 	int		tex_x;
 	int		tex_y;
@@ -101,26 +106,11 @@ struct s_display
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	int		tex_dir;
 };
 
 struct s_player
 {
-	float	angle;
-	int		mx;
-	int		my;
-	int		dof;
-	float	rx;
-	float	ry;
-	float	ra;
-	float	xo;
-	float	yo;
-	float	disH;
-	float	hx;
-	float	hy;
-	float	disV;
-	float	vx;
-	float	vy;
-	float	disT;
 	float	pos_x;
 	float	pos_y;
 	float	dir_x;
@@ -150,6 +140,7 @@ struct s_data
 	int			map_width;
 	int			map_check;
 	int			before_map;
+	char		*err;
 	void		*mlx;
 	void		*win;
 	void		*win2;
@@ -162,8 +153,9 @@ struct s_data
 	t_garb		*garbage;
 	t_fd		*fd;
 	t_player	player;
-	t_asset		asset[6];
+	t_asset		asset[5];
 	t_display	display;
+	t_move		move;
 };
 
 /* MAIN */
@@ -267,8 +259,11 @@ int	key_hook(int keycode, t_data *data);
 float	dist(t_data *data, float bx, float by, float ang);
 void	draw_ray(t_data	*data, char **map);
 int	create_trgb(int t, int r, int g, int b);
-void	draw_ray_2(t_data	*data, char **map);
+int		draw_ray_2(t_data *data);
 void	move_up_2(t_data *data);
 void	move_down_2(t_data *data);
+void	move(t_data *data);
+int		key_init(int keycode, t_data *data);
+int		key_reset(int keycode, t_data *data);
 
 #endif

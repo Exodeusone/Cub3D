@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 11:41:01 by julien            #+#    #+#             */
-/*   Updated: 2022/03/31 21:19:06 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/06 13:05:35 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,25 @@ int	ft_parse_around(t_data *data, char **map, int i, int j)
 	return (0);
 }
 
+int	ft_is_in_map(t_data *data, char c)
+{
+	char	*around;
+	int		i;
+	int		ret;
+
+	i = 0;
+	ret = 0;
+	around = ft_strdup(data, "0SEWN");
+	while (around[i])
+	{
+		if (around[i] == c)
+			ret++;
+		i++;
+	}
+	ft_free(data, around);
+	return (ret);
+}
+
 int	ft_check_floor(t_data *data, t_fd *map)
 {
 	int	i;
@@ -82,7 +101,7 @@ int	ft_check_floor(t_data *data, t_fd *map)
 		j = 0;
 		while (j < data->map_width)
 		{
-			if (map->map[i][j] == '0')
+			if (ft_is_in_map(data, map->map[i][j]) > 0)
 			{
 				if (ft_parse_around(data, map->map, i, j) == 1)
 					return (1);
@@ -104,6 +123,6 @@ int	ft_check_map(t_data *data)
 	if (ft_check_floor(data, tmp) == 1)
 		return (ft_puterr("Error\nMap is not closed\n"), 1);
 	if (ft_check_start(data, tmp) == 1)
-		return (ft_puterr("Error\nToo many start position\n"), 1);
+		return (ft_puterr("Error\nInvalid number of start position\n"), 1);
 	return (0);
 }

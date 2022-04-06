@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 10:11:44 by upean-de          #+#    #+#             */
-/*   Updated: 2022/04/05 19:14:15 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:50:42 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_floor(t_data *data, int x)
 	}
 }
 
-void	draw_ray_2(t_data *data, char **map)
+int	draw_ray_2(t_data *data)
 {
 	int 	x;
 	int		y;
@@ -45,8 +45,8 @@ void	draw_ray_2(t_data *data, char **map)
 	x = 0;
 	data->time = 0;
 	data->old_time = 0;
-	data->player.move_speed = 0.1;
-	data->player.rot_speed = 0.033 * 1.8;
+	data->player.move_speed = 0.1 / 1.5;
+	data->player.rot_speed = 0.033 * 1.8 / 1.3;
 	while (x < SCREEN_W)
 	{
 		camera_x = 2 * x / (float)SCREEN_W - 1;
@@ -106,7 +106,7 @@ void	draw_ray_2(t_data *data, char **map)
 				data->player.map_y += data->player.step_y;
 				data->player.side = 1;
 			}
-			if (map[data->player.map_x][data->player.map_y] == '1')
+			if (data->map[data->player.map_x][data->player.map_y] == '1')
 				data->player.hit = 1;
 		}
 		if (data->player.side == 0)
@@ -125,25 +125,35 @@ void	draw_ray_2(t_data *data, char **map)
 		// printf("y %d == x %d == pixel %d == start %d == end %d == line_height %d\n", y, x, y * SCREEN_W + x, data->display.draw_start, data->display.draw_end, data->display.line_height);
 		// printf("map_y %f == pos_y %f == step_y %f == ray_dir_y %f\n", (float)data->player.map_x, data->player.pos_y, (float)data->player.step_y, data->player.ray_dir_y);
 		// printf("perpwalldist : %f\n", data->player.perp_wall_dist);
+		if (data->player.side == 0 && data->player.ray_dir_x < 0)
+			data->display.tex_dir = 1;
+		if (data->player.side == 0 && data->player.ray_dir_x >= 0)
+			data->display.tex_dir = 2;
+		if (data->player.side == 1 && data->player.ray_dir_y < 0)
+			data->display.tex_dir = 3;
+		if (data->player.side == 1 && data->player.ray_dir_y >= 0)
+			data->display.tex_dir = 4;
 		if(data->player.side == 0)
-			data->display.wall_x = data->player.pos_y + data->display.perp_wall_dist * data->display.ray_dir_y;
+			data->display.wall_x = data->player.pos_y + data->player.perp_wall_dist * data->player.ray_dir_y;
 		else
-			data->display.wall_x = data->player.pos_x + data->display.perp_wall_dist * data->display.ray_dir_x;
+			data->display.wall_x = data->player.pos_x + data->player.perp_wall_dist * data->player.ray_dir_x;
 		data->display.wall_x -= floor((data->display.wall_x));
-		data->display.tex_x = (int)(data->display.wall_x * data);
-		data->display.step = 1.0 * 64 / line_height;
-		data->display.tex_pos = (data->display.y_start - SCREEN_H / 2 + line_height / 2) * data->display.step;
+		data->display.tex_x = (int)(data->display.wall_x * (float)data->asset[data->display.tex_dir].width); // voir pour ajouter effet miroir
+		data->display.step = 1.0 * data->asset[data->display.tex_dir].height / data->display.line_height;
+		data->display.tex_pos = (data->display.draw_start - SCREEN_H / 2 + data->display.line_height / 2) * data->display.step;
 		while (y < data->display.draw_end)
 		{
-			if (data->player.side == 1)
-				data->asset[0].addr[y * SCREEN_W + x] = create_trgb(0, 127, 0, 0);
-			else
-				data->asset[0].addr[y * SCREEN_W + x] = create_trgb(0, 255, 0, 0);
+			data->display.tex_y = (int)data->display.tex_pos & (data->asset[data->display.tex_dir].height - 1);
+			data->display.tex_pos += data->display.step;
+			if (y < SCREEN_H && x < SCREEN_W)
+				data->asset[0].addr[y * SCREEN_W + x] = data->asset[data->display.tex_dir].addr[data->display.tex_y * data->asset[data->display.tex_dir].width + data->display.tex_x];
 			y++;
 		}
 		draw_floor(data, x);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->asset[0].img, 0, 0);
-	mlx_destroy_image(data->mlx, data->asset[0].img);
+	move(data);
+	// mlx_destroy_image(data->mlx, data->asset[0].img);
+	return (0);
 }

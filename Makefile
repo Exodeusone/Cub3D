@@ -6,7 +6,7 @@
 #    By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/04/05 16:47:27 by upean-de         ###   ########.fr        #
+#    Updated: 2022/04/06 11:17:34 by upean-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,6 @@ CUB3D_NAME		= cub3d.c\
 				  move.c\
 				  rgb.c\
 				  draw_ray.c\
-				  move_2.c\
 
 CUB3D_PATH		= cub3D_srcs/cub3D
 

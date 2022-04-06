@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_identifier.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:35:26 by exodeus           #+#    #+#             */
-/*   Updated: 2022/03/31 21:23:27 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/06 13:28:30 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ char	*ft_get_my_path(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i] && str[i] != ' ')
+	i = 2;
+	while (str[i] && str[i] == ' ')
 	{
 		if (str[i] == '\n')
 			return (NULL);
 		i++;
 	}
-	i++;
 	if (str[i] != '.')
 		return (NULL);
 	return (&str[i]);
@@ -37,6 +36,8 @@ char	*ft_get_my_path_2(t_data *data, char *str, char c)
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (str[i] == '\n')
+		return (NULL);
+	if (str[i] < '0' || str[i] > '9')
 		return (NULL);
 	if (ft_check_rgb(data, &str[i], c) == 1)
 		return (NULL);

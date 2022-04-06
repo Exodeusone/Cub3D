@@ -1,13 +1,13 @@
 
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-EA ./path_to_the_east_texture
-WE ./path_to_the_west_texture
+NO ./cub3D_assets/eagle.xpm
+SO ./cub3D_assets/greystone.xpm
+WE ./cub3D_assets/purplestone.xpm
+EA ./cub3D_assets/redbrick.xpm
 
 
-F 220,100,0
-C 225,30,0
+F 150,110,60
+C 100,225,255
 
 
     111    1111111111111111111111111

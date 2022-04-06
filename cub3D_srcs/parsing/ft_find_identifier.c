@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_find_identifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:39:56 by exodeus           #+#    #+#             */
-/*   Updated: 2022/04/04 22:49:49 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/06 13:25:38 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_ultimate_check_rgb(t_data *data, char *str, char c)
 		return (1);
 	while (check[i])
 	{
-		if (ft_strlen_rgb(check[i]) > 3)
+		if (ft_strlen_rgb(check[i]) > 3 || ft_strlen_rgb(check[i]) < 1)
 			return (1);
 		ret = ft_atoi(check[i]);
 		if (ret < 0 || ret > 255)

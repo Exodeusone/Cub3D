@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/05 12:05:06 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:40:46 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_init_data(t_data *data)
 	data->floor.red = 0;
 	data->floor.green = 0;
 	data->floor.blue = 0;
+	data->err = NULL;
 	data->path.north = NULL;
 	data->path.south = NULL;
 	data->path.east = NULL;
