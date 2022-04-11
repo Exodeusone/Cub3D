@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 21:02:27 by julien            #+#    #+#             */
-/*   Updated: 2022/04/05 19:23:07 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 14:12:25 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ void	get_coor(t_data *data)
 	int	j;
 
 	i = 0;
-	data->player.plane_x = 0;
-	data->player.plane_y = 0;
-	data->player.dir_x = 0;
-	data->player.dir_y = 0;
 	while (data->map[i])
 	{
 		j = 0;
@@ -56,7 +52,6 @@ void	get_coor(t_data *data)
 			{
 				data->player.pos_x = (float)i + 0.5;
 				data->player.pos_y = (float)j + 0.5;
-				printf("i %d = j %d\n", i, j);
 				ft_init_start_angle(data, data->map[i][j]);
 				return ;
 			}

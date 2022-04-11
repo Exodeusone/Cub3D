@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 11:41:01 by julien            #+#    #+#             */
-/*   Updated: 2022/04/06 13:05:35 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 14:14:57 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,6 @@ int	ft_parse_around(t_data *data, char **map, int i, int j)
 			return (1);
 	}
 	return (0);
-}
-
-int	ft_is_in_map(t_data *data, char c)
-{
-	char	*around;
-	int		i;
-	int		ret;
-
-	i = 0;
-	ret = 0;
-	around = ft_strdup(data, "0SEWN");
-	while (around[i])
-	{
-		if (around[i] == c)
-			ret++;
-		i++;
-	}
-	ft_free(data, around);
-	return (ret);
 }
 
 int	ft_check_floor(t_data *data, t_fd *map)

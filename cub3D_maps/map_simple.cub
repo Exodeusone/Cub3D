@@ -1,8 +1,8 @@
 
 
-NO./cub3D_assets/eagle.xpm
+NO./cub3D_assets/bookshelf.xpm
 SO ./cub3D_assets/greystone.xpm
-WE ./cub3D_assets/purplestone.xpm
+WE ./cub3D_assets/bricks.xpm
 EA./cub3D_assets/redbrick.xpm
 
 
@@ -12,7 +12,7 @@ C100,225,255
 1 1  1 1
       111111111111111111
       10000000001
-      100001111111111
+      111111111111111
       10N001
       1001001
       1111111

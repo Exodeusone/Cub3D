@@ -3,169 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:18:22 by upean-de          #+#    #+#             */
-/*   Updated: 2022/04/04 21:27:09 by julien           ###   ########.fr       */
+/*   Updated: 2022/04/06 14:58:21 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D_include/cub3D.h"
 
-float	dist(t_data *data, float bx, float by, float ang)
+void	draw_ceiling(t_data *data, int x)
 {
-	float	a;
-	float	b;
+	int	y;
 
-	(void)ang;
-	a = bx - data->player.x;
-	b = by - data->player.y;
-	return (sqrt(a * a + b * b));
+	y = 0;
+	while (y < data->display.draw_start - 1)
+	{
+		data->asset[0].addr[y * SCREEN_W + x] = create_trgb(0, data->cell.red,
+				data->cell.green, data->cell.blue);
+		y++;
+	}
 }
 
-void	draw_ray(t_data	*data, char **map)
+void	draw_floor(t_data *data, int x)
 {
-	int		r;
-	int		r_limit;
-	float	a_tan;
-	float	n_tan;
-	float	ca;
+	int	y;
 
-	r = 0;
-	r_limit = 60 * 4;
-	a_tan = 0;
-	n_tan = 0;
-	data->player.ra = data->player.angle - DR * 30;
-	if (data->player.ra <= 0)
-		data->player.ra += 2 * PI;
-	if (data->player.ra > 2 * PI)
-		data->player.ra -= 2 * PI;
-	while (r < r_limit)
+	y = data->display.draw_end + 1;
+	while (y < SCREEN_H)
 	{
-		data->player.dof = 0;
-		data->player.disH = 1000000;
-		data->player.hx = data->player.x;
-		data->player.hy = data->player.y;
-		a_tan = -1 / tan(data->player.ra);
-		if (data->player.ra > PI)
-		{
-			data->player.ry = (((int)data->player.y >> 6) << 6) - 0.0001;
-			data->player.rx = (data->player.y - data->player.ry) * a_tan + data->player.x;
-			data->player.yo = -64;
-			data->player.xo = -data->player.yo * a_tan;
-		}
-		if (data->player.ra < PI)
-		{
-			data->player.ry = (((int)data->player.y >> 6) << 6) + 64;
-			data->player.rx = (data->player.y - data->player.ry) * a_tan + data->player.x;
-			data->player.yo = 64;
-			data->player.xo = -data->player.yo * a_tan;
-		}
-		if (data->player.ra == 0 || data->player.ra == PI)
-		{
-			data->player.rx = data->player.x;
-			data->player.ry = data->player.y;
-			data->player.dof = data->map_height;
-		}
-		while (data->player.dof < data->map_height)
-		{
-			data->player.mx = (int) data->player.rx >> 6;
-			data->player.my = (int) data->player.ry >> 6;
-			if (data->player.mx >= 0 && data->player.mx < data->map_width
-				&& data->player.my >= 0 && data->player.my < data->map_height
-				&& map[data->player.my][data->player.mx] == '1')
-			{
-				data->player.dof = data->map_height;
-				data->player.hx = data->player.rx;
-				data->player.hy = data->player.ry;
-				data->player.disH = dist(data, data->player.hx, data->player.hy, data->player.ra);
-			}
-			else
-			{
-				data->player.rx += data->player.xo;
-				data->player.ry += data->player.yo;
-				data->player.dof++;
-			}
-		}
-		data->player.dof = 0;
-		data->player.disV = 1000000;
-		data->player.vx = data->player.x;
-		data->player.vy = data->player.y;
-		n_tan = -tan(data->player.ra);
-		if (data->player.ra > P2 && data->player.ra < P3)
-		{
-			data->player.rx = (((int)data->player.x >> 6) << 6) - 0.0001;
-			data->player.ry = (data->player.x - data->player.rx) * n_tan + data->player.y;
-			data->player.xo = -64;
-			data->player.yo = -data->player.xo * n_tan;
-		}
-		if (data->player.ra < P2 || data->player.ra > P3)
-		{
-			data->player.rx = (((int)data->player.x >> 6) << 6) + 64;
-			data->player.ry = (data->player.x - data->player.rx) * n_tan + data->player.y;
-			data->player.xo = 64;
-			data->player.yo = -data->player.xo * n_tan;
-		}
-		if (data->player.ra == 0 || data->player.ra == PI)
-		{
-			data->player.rx = data->player.x;
-			data->player.ry = data->player.y;
-			data->player.dof = data->map_height;
-		}
-		while (data->player.dof < data->map_width)
-		{
-			data->player.mx = (int) data->player.rx >> 6;
-			data->player.my = (int) data->player.ry >> 6;
-			if (data->player.mx >= 0 && data->player.mx < data->map_width
-				&& data->player.my >= 0 && data->player.my < data->map_height
-				&& map[data->player.my][data->player.mx] == '1')
-			{
-				data->player.dof = data->map_width;
-				data->player.vx = data->player.rx;
-				data->player.vy = data->player.ry;
-				data->player.disV = dist(data, data->player.vx, data->player.vy, data->player.ra);
-			}
-			else
-			{
-				data->player.rx += data->player.xo;
-				data->player.ry += data->player.yo;
-				data->player.dof++;
-			}
-		}
-		if (data->player.disV < data->player.disH)
-		{
-			data->player.rx = data->player.vx;
-			data->player.ry = data->player.vy;
-			data->player.disT = data->player.disV;
-			data->player.side = 1;
-		}
-		if (data->player.disV > data->player.disH)
-		{
-			data->player.rx = data->player.hx;
-			data->player.ry = data->player.hy;
-			data->player.disT = data->player.disH;
-			data->player.side = 0;
-		}
-		ca = data->player.angle - data->player.ra;
-		if (ca < 0)
-			ca += 2 * PI;
-		if (ca > 2 * PI)
-			ca -= 2 * PI;
-		data->player.disT = data->player.disT* cos(ca);
-		r++;
-		draw_direction(data);
-		draw_3d(data, r, r_limit);
-		data->player.ra += DR / 4;
-		if (data->player.ra <= 0)
-			data->player.ra += 2 * PI;
-		if (data->player.ra > 2 * PI)
-			data->player.ra -= 2 * PI;
+		data->asset[0].addr[y * SCREEN_W + x] = create_trgb(0, data->floor.red,
+				data->floor.green, data->floor.blue);
+		y++;
 	}
-	ft_draw_player_front(data);
-	ft_draw_player_left(data);
-	ft_draw_player_right(data);
+}
+
+int	ft_init_draw_ray(t_data *data)
+{
+	data->player.move_speed = 0.1 / 1.5;
+	data->player.rot_speed = 0.033 * 1.8 / 1.3;
+	return (0);
+}
+
+void	ft_init_loop_ray(t_data *data, int x)
+{
+	float	camera_x;
+
+	camera_x = 2 * x / (float)SCREEN_W - 1;
+	data->player.ray_dir_x = data->player.dir_x + data->player.plane_x
+		* camera_x;
+	data->player.ray_dir_y = data->player.dir_y + data->player.plane_y
+		* camera_x;
+	data->player.map_x = (int)data->player.pos_x;
+	data->player.map_y = (int)data->player.pos_y;
+}
+
+int	draw_ray(t_data *data)
+{
+	int		x;
+	int		y;
+
+	x = ft_init_draw_ray(data);
+	while (x < SCREEN_W)
+	{
+		ft_init_loop_ray(data, x);
+		data->player.hit = ft_draw_ray2(data);
+		ft_draw_ray3(data);
+		ft_draw_ray4(data);
+		ft_draw_ray5(data);
+		draw_ceiling(data, x);
+		y = ft_draw_ray6(data);
+		ft_draw_ray7(data, y, x);
+		draw_floor(data, x);
+		x++;
+	}
 	mlx_put_image_to_window(data->mlx, data->win, data->asset[0].img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->win2, data->asset[1].img, 0, 0);
-	mlx_destroy_image(data->mlx, data->asset[0].img);
-	mlx_destroy_image(data->mlx, data->asset[1].img);
+	move(data);
+	return (0);
 }

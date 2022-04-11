@@ -6,7 +6,7 @@
 #    By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 11:35:26 by jbonniva          #+#    #+#              #
-#    Updated: 2022/04/06 11:17:34 by upean-de         ###   ########.fr        #
+#    Updated: 2022/04/06 14:59:41 by upean-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,22 +86,17 @@ PARS_NAME	= ft_check_name_map.c\
 
 PARS_PATH	= cub3D_srcs/parsing
 
-#MINIMAP
-MINIMAP_NAME	= draw_map.c\
-				  ft_draw_player.c\
-
-MINIMAP_PATH	= cub3D_srcs/minimap
-
 #CUB3D
 CUB3D_NAME		= cub3d.c\
-				  draw_3d.c\
+				  raycasting.c\
+				  raycasting2.c\
+				  raycasting3.c\
 				  ft_exit.c\
 				  get_coor.c\
 				  init_assets.c\
 				  look.c\
 				  move.c\
 				  rgb.c\
-				  draw_ray.c\
 
 CUB3D_PATH		= cub3D_srcs/cub3D
 
@@ -115,7 +110,6 @@ SRCS 	= 	${addprefix ${SRCS_PATH}/,${SRCS_NAME}}\
 			${addprefix ${GARB_PATH}/,${GARB_NAME}}\
 			${addprefix ${UTILS_PATH}/,${UTILS_NAME}}\
 			${addprefix ${PARS_PATH}/,${PARS_NAME}}\
-			${addprefix ${MINIMAP_PATH}/,${MINIMAP_NAME}}\
 			${addprefix ${CUB3D_PATH}/,${CUB3D_NAME}}\
 
 OBJS	=	${SRCS:.c=.o}

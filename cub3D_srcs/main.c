@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:22:50 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/06 13:40:46 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 14:14:20 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,16 @@ void	ft_init_data(t_data *data)
 	data->floor.red = 0;
 	data->floor.green = 0;
 	data->floor.blue = 0;
+	data->player.plane_x = 0;
+	data->player.plane_y = 0;
+	data->player.dir_x = 0;
+	data->player.dir_y = 0;
 	data->err = NULL;
 	data->path.north = NULL;
 	data->path.south = NULL;
 	data->path.east = NULL;
 	data->path.west = NULL;
 	data->map = NULL;
-}
-
-void	ft_print_data(t_data *data)
-{
-	printf("NORTH = %s\n", data->path.north);
-	printf("SOUTH = %s\n", data->path.south);
-	printf("WEST = %s\n", data->path.west);
-	printf("EAST = %s\n", data->path.east);
-	printf("RGB FLOOR = red : %d | green : %d | blue %d\n", data->floor.red, data->floor.green, data->floor.blue);
-	printf("RGB CELL = red : %d | green : %d | blue %d\n", data->cell.red, data->cell.green, data->cell.blue);
-	printf("MAP dans la structure data :\n\n");
-	for (int i = 0; data->map[i]; i++)
-		printf("%s\n", data->map[i]);
 }
 
 int	main(int argc, char **argv)
@@ -64,7 +55,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ft_get_fd(&data);
-	ft_print_data(&data);
 	cub3d(&data);
 	clear_garbage(&data);
 	return (0);

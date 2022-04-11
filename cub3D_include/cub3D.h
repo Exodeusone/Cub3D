@@ -6,7 +6,7 @@
 /*   By: upean-de <upean-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 09:05:57 by jbonniva          #+#    #+#             */
-/*   Updated: 2022/04/06 13:50:51 by upean-de         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:16:04 by upean-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,12 @@ typedef struct s_path			t_path;
 typedef struct s_display		t_display;
 typedef struct s_move			t_move;
 
-# define PI 3.14159265359
-# define MAP_S 64
-# define P2 PI/2
-# define P3 3*PI/2
-# define DR 0.0174533
 # define SCREEN_W 960
 # define SCREEN_H 960
 
 struct s_garb
 {
-	void				*point;
+	void			*point;
 	struct s_garb	*next;
 };
 
@@ -90,10 +85,10 @@ struct s_asset
 
 struct s_path
 {
-	char *north;
-	char *south;
-	char *east;
-	char *west;
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
 };
 
 struct s_display
@@ -143,10 +138,7 @@ struct s_data
 	char		*err;
 	void		*mlx;
 	void		*win;
-	void		*win2;
 	char		**map;
-	float		time;
-	float		old_time;
 	t_path		path;
 	t_rgb		cell;
 	t_rgb		floor;
@@ -162,9 +154,8 @@ struct s_data
 int		main(int argc, char **argv);
 
 /* GNL */
-char		*get_next_line(t_data *data, int fd);
-int			ft_strchr(char *s, int c);
-
+char	*get_next_line(t_data *data, int fd);
+int		ft_strchr(char *s, int c);
 
 /* GARBAGE COLLECTOR */
 int		init_garbage(t_data *data);
@@ -225,25 +216,13 @@ void	ft_add_rgb(t_data *data, int color, char c, int i);
 void	ft_get_data_map(t_data *data, t_fd *fd);
 void	ft_clear_fd(t_data *data);
 void	ft_get_fd(t_data *data);
-
-/* MINIMAP */
-void	draw_map(t_data *data, char **map);
-void	draw_wall(t_data *data, int x, int y);
-void	ft_draw_player_front(t_data *data);
-void	ft_draw_player_left(t_data *data);
-void	ft_draw_player_right(t_data *data);
-void	draw_direction(t_data *data);
+int		ft_is_in_map(t_data *data, char c);
 
 /* CUB3D */
-int	ok_move_up(t_data *data);
-int	ok_move_down(t_data *data);
-int	ok_move_side(t_data *data, float dx, float dy);
 void	cub3d(t_data *data);
-int	get_color(t_data *data);
 void	draw_ceiling(t_data *data, int x);
 void	draw_floor(t_data *data, int x);
-void	draw_3d(t_data *data, int r, int r_limit);
-int	ft_exit(t_data *data);
+int		ft_exit(t_data *data);
 void	ft_init_start_angle(t_data *data, char c);
 void	get_coor(t_data *data);
 void	init_assets(t_data *data);
@@ -255,15 +234,17 @@ void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	move_right(t_data *data);
 void	move_left(t_data *data);
-int	key_hook(int keycode, t_data *data);
-float	dist(t_data *data, float bx, float by, float ang);
-void	draw_ray(t_data	*data, char **map);
-int	create_trgb(int t, int r, int g, int b);
-int		draw_ray_2(t_data *data);
-void	move_up_2(t_data *data);
-void	move_down_2(t_data *data);
+int		key_hook(int keycode, t_data *data);
+int		create_trgb(int t, int r, int g, int b);
+int		draw_ray(t_data *data);
 void	move(t_data *data);
 int		key_init(int keycode, t_data *data);
 int		key_reset(int keycode, t_data *data);
+int		ft_draw_ray2(t_data *data);
+void	ft_draw_ray3(t_data *data);
+void	ft_draw_ray4(t_data *data);
+void	ft_draw_ray5(t_data *data);
+int		ft_draw_ray6(t_data *data);
+void	ft_draw_ray7(t_data *data, int y, int x);
 
 #endif
